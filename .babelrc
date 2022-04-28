@@ -1,5 +1,5 @@
 {
   // SSR에 필요한 바벨 플러그인 추가
   "presets": ["next/babel"],
-  "plugins": [["styled-components", { "ssr": true }]]
+  "plugins": [["styled-components", { "ssr": true }], "inline-react-svg"]
 }
