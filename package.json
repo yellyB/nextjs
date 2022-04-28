@@ -1,30 +1,20 @@
 {
   "name": "nextjs",
-  "version": "1.0.0",
-  "description": "Next.js 공부용 프로젝트",
-  "main": "index.js",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yellyB/nextjs.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/yellyB/nextjs/issues"
-  },
-  "homepage": "https://github.com/yellyB/nextjs#readme",
   "dependencies": {
-    "next": "^12.1.5",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "next": "12.1.5",
+    "react": "18.1.0",
+    "react-dom": "18.1.0"
   },
   "devDependencies": {
-    "@types/node": "^17.0.29",
-    "@types/react": "^18.0.8",
-    "typescript": "^4.6.3"
+    "eslint": "8.14.0",
+    "eslint-config-next": "12.1.5"
   }
 }
