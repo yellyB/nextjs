@@ -25,6 +25,12 @@ const Container = styled.div`
     /* align-items: center; */
     .header-logo {
       /* margin-right: 6px; */
+      width: 50px;
+      height: 50px;
+    }
+    .header-logo-text {
+      width: 50px;
+      height: 50px;
     }
   }
 
@@ -67,7 +73,7 @@ const Header: React.FC = () => {
       <Link href="/">
         <a className="header-logo-wrapper">
           <LogoIcon className="header-logo" />
-          <LogoTextIcon />
+          <LogoTextIcon className="header-logo-text" />
         </a>
       </Link>
       <div className="header-auth-buttons">
