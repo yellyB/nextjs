@@ -4,6 +4,8 @@ import LogoIcon from "../public/static/svg/logo/logo.svg";
 import LogoTextIcon from "../public/static/svg/logo/logo_text.svg";
 import Link from "next/link";
 import palette from "../styles/palette";
+import SignUpModal from "./auth/SignUpModal";
+import ModalPortal from "./ModalPortal";
 
 const Container = styled.div`
   position: sticky; // header를 맨 위 고정
@@ -54,31 +56,6 @@ const Container = styled.div`
       }
     }
   }
-
-  /* 회원가입 모달 */
-  .modal-wrapper {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    .modal-background {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.75);
-      z-index: 10;
-    }
-    .modal-contents {
-      width: 400px;
-      height: 400px;
-      background-color: white;
-      z-index: 11;
-    }
-  }
 `;
 
 const Header: React.FC = () => {
@@ -93,18 +70,18 @@ const Header: React.FC = () => {
         </a>
       </Link>
       <div className="header-auth-buttons">
-        <button className="header-signup-button">SignUp</button>
+        <button
+          className="header-signup-button"
+          onClick={() => setModalOpend(true)}
+        >
+          SignUp
+        </button>
         <button className="header-login-button">SignIn</button>
       </div>
       {modalOpend && (
-        <div className="modal-wrapper">
-          <div
-            className="modal-background"
-            role="presentation"
-            onClick={() => setModalOpend(false)}
-          />
-          <div className="modal-contents" />
-        </div>
+        <ModalPortal closePortal={() => setModalOpend(false)}>
+          <SignUpModal />
+        </ModalPortal>
       )}
     </Container>
   );
