@@ -6,6 +6,7 @@ import Link from "next/link";
 import palette from "../styles/palette";
 import SignUpModal from "./auth/SignUpModal";
 import ModalPortal from "./ModalPortal";
+import useModal from "../hooks/useModal";
 
 const Container = styled.div`
   position: sticky; // header를 맨 위 고정
@@ -59,7 +60,7 @@ const Container = styled.div`
 `;
 
 const Header: React.FC = () => {
-  const [modalOpend, setModalOpend] = useState(false);
+  const { openModal, ModalPortal } = useModal();
 
   return (
     <Container>
@@ -70,19 +71,14 @@ const Header: React.FC = () => {
         </a>
       </Link>
       <div className="header-auth-buttons">
-        <button
-          className="header-signup-button"
-          onClick={() => setModalOpend(true)}
-        >
+        <button className="header-signup-button" onClick={openModal}>
           SignUp
         </button>
         <button className="header-login-button">SignIn</button>
       </div>
-      {modalOpend && (
-        <ModalPortal closePortal={() => setModalOpend(false)}>
-          <SignUpModal />
-        </ModalPortal>
-      )}
+      <ModalPortal>
+        <SignUpModal />
+      </ModalPortal>
     </Container>
   );
 };
