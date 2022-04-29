@@ -56,4 +56,11 @@ module.exports = {
       }, //import 시 확장자명은 사용하지 않는다.
     ],
   },
+  settings: {
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".jsx", ".ts", ".tsx", ".d.ts"],
+      },
+    },
+  },
 };
