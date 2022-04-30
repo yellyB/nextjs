@@ -9,7 +9,7 @@ const Container = styled.div<{ iconExist: boolean }>`
     height: 46px;
     padding: ${({ iconExist }) => (iconExist ? "0 44px 0 11px" : "0 11px")};
     /* border: 1px solid ${palette.gray_eb}; */
-    border-radius: 4px;
+    /* border-radius: 4px; */
     font-size: 16px;
     /* outline: none; */
     ::placeholder {

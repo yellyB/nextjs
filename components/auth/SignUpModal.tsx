@@ -7,6 +7,9 @@ import EyeOpendIcon from "../../public/static/svg/modal/eye_closed.svg";
 import EyeClosedIcon from "../../public/static/svg/modal/eye_opend.svg";
 import palette from "../../styles/palette";
 import Input from "../common/Input";
+import { dayList, monthList, yearList } from "../../lib/staticData";
+import Selector from "../common/Selector";
+import useModal from "../../hooks/useModal";
 
 const Container = styled.div`
   width: 568px;
@@ -28,6 +31,31 @@ const Container = styled.div`
       cursor: pointer;
     }
   }
+  .signup-modal-birthday-selectors {
+    display: flex;
+    margin-bottom: 24px;
+    .signup-modal-birthday-year-selector {
+      margin-right: 16px;
+      width: 33%;
+    }
+    .signup-modal-birthday-month-selector {
+      margin-right: 16px;
+      width: 33%;
+    }
+    .signup-modal-birthday-day-selector {
+      width: 33%;
+    }
+  }
+  .signup-modal-birthday-label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+  .signup-modal-birthday-info {
+    margin-bottom: 16px;
+    color: ${palette.charcoal};
+  }
 `;
 
 const SignUpModal: React.FC = () => {
@@ -36,6 +64,9 @@ const SignUpModal: React.FC = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
+  const [birthYear, setBirthYear] = useState<string | undefined>();
+  const [birthMonth, setBirthMonth] = useState<string | undefined>();
+  const [birthDay, setBirthDay] = useState<string | undefined>();
 
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -57,6 +88,18 @@ const SignUpModal: React.FC = () => {
 
   const toggleHidePassword = () => {
     setHidePassword(!hidePassword);
+  };
+
+  const onChangeBirthYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setBirthYear(event.target.value);
+  };
+
+  const onChangeBirthMonth = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setBirthMonth(event.target.value);
+  };
+
+  const onChangeBirthDay = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setBirthDay(event.target.value);
   };
 
   return (
@@ -110,6 +153,35 @@ const SignUpModal: React.FC = () => {
           value={passwordConfirm}
           onChange={onChangePasswordConfirm}
         />
+      </div>
+      <div className="signup-modal-birthday-selectors">
+        <div className="signup-modal-birthday-year-selector">
+          <Selector
+            options={yearList}
+            disabledOptions={["year"]}
+            defaultValue="year"
+            value={birthYear}
+            onChange={onChangeBirthYear}
+          />
+        </div>
+        <div className="signup-modal-birthday-month-selector">
+          <Selector
+            options={monthList}
+            disabledOptions={["month"]}
+            defaultValue="month"
+            value={birthMonth}
+            onChange={onChangeBirthMonth}
+          />
+        </div>
+        <div className="signup-modal-birthday-day-selector">
+          <Selector
+            options={dayList}
+            disabledOptions={["day"]}
+            defaultValue="day"
+            value={birthDay}
+            onChange={onChangeBirthDay}
+          />
+        </div>
       </div>
     </Container>
   );

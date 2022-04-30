@@ -25,12 +25,12 @@ const Container = styled.div`
     /* align-items: center; */
     .header-logo {
       /* margin-right: 6px; */
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
     }
     .header-logo-text {
-      width: 50px;
-      height: 50px;
+      width: 60px;
+      height: 60px;
     }
   }
 
