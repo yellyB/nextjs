@@ -11,8 +11,10 @@ import { dayList, monthList, yearList } from "../../lib/staticData";
 import Selector from "../common/Selector";
 import useModal from "../../hooks/useModal";
 import Button from "../common/Button";
+import { signupAPI } from "../../lib/api/auth";
+import Data from "../../lib/data";
 
-const Container = styled.div`
+const Container = styled.form`
   width: 568px;
   /* height: 614px; */
   padding: 32px;
@@ -108,8 +110,25 @@ const SignUpModal: React.FC = () => {
     setBirthDay(event.target.value);
   };
 
+  const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    try {
+      const signUpBody = {
+        email,
+        id,
+        password,
+        passwordConfirm,
+        birthday: new Date(
+          `${birthYear}-${birthMonth}-${birthDay}`
+        ).toISOString(),
+      };
+      await signupAPI(signUpBody);
+    } catch (e) {
+      console.log("e:", e);
+    }
+  };
   return (
-    <Container>
+    <Container onSubmit={onSubmitSignUp}>
       Sign Up
       <CloseXIcon className="modal-close-x-icon" />
       <div className="input-wrapper">
