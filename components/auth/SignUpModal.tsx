@@ -68,6 +68,7 @@ const Container = styled.form`
 `;
 
 const SignUpModal: React.FC = () => {
+  const [validateMode, setValidateMode] = useState(false); // 처음엔 빈칸이어도 에러 안띄우기 위해
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
@@ -116,6 +117,11 @@ const SignUpModal: React.FC = () => {
   const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    setValidateMode(true);
+    if (!email || !id || !password) {
+      return undefined;
+    }
+
     try {
       const signUpBody = {
         email,
@@ -147,6 +153,10 @@ const SignUpModal: React.FC = () => {
           name="email"
           value={email}
           onChange={onChangeEmail}
+          validateMode={validateMode}
+          useValidation
+          isValid={!!email}
+          errorMessage="please fill email input"
         />
       </div>
       <div className="input-wrapper">
@@ -155,6 +165,10 @@ const SignUpModal: React.FC = () => {
           icon={<PersonIcon />}
           value={id}
           onChange={onChangeId}
+          validateMode={validateMode}
+          useValidation
+          isValid={!!id}
+          errorMessage="please fill id input"
         />
       </div>
       <div className="input-wrapper signup-password-input-wrapper ">
@@ -170,6 +184,10 @@ const SignUpModal: React.FC = () => {
           }
           value={password}
           onChange={onChangePassword}
+          validateMode={validateMode}
+          useValidation
+          isValid={!!password}
+          errorMessage="please fill password input"
         />
       </div>
       <div className="input-wrapper signup-password-input-wrapper ">
@@ -185,6 +203,10 @@ const SignUpModal: React.FC = () => {
           }
           value={passwordConfirm}
           onChange={onChangePasswordConfirm}
+          validateMode={validateMode}
+          useValidation
+          isValid={!!passwordConfirm}
+          errorMessage="please fill password confirm input"
         />
       </div>
       <div className="signup-modal-birthday-selectors">
