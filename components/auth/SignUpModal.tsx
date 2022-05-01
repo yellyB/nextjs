@@ -14,6 +14,8 @@ import Button from "../common/Button";
 import { signupAPI } from "../../lib/api/auth";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user";
+import { commonActions } from "../../store/common";
+import useValidateMode from "../../hooks/useValidateMode";
 
 const Container = styled.form`
   width: 568px;
@@ -68,7 +70,6 @@ const Container = styled.form`
 `;
 
 const SignUpModal: React.FC = () => {
-  const [validateMode, setValidateMode] = useState(false); // 처음엔 빈칸이어도 에러 안띄우기 위해
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
@@ -79,6 +80,7 @@ const SignUpModal: React.FC = () => {
   const [birthDay, setBirthDay] = useState<string | undefined>();
 
   const dispatch = useDispatch();
+  const { setValidateMode } = useValidateMode();
 
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
@@ -117,7 +119,9 @@ const SignUpModal: React.FC = () => {
   const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    setValidateMode(true);
+    // dispatch(commonActions.setValidateMode(true));
+    setValidateMode(true); // 위를 커스텀 훅 만들어서 변경
+
     if (!email || !id || !password) {
       return undefined;
     }
@@ -153,7 +157,6 @@ const SignUpModal: React.FC = () => {
           name="email"
           value={email}
           onChange={onChangeEmail}
-          validateMode={validateMode}
           useValidation
           isValid={!!email}
           errorMessage="please fill email input"
@@ -165,7 +168,6 @@ const SignUpModal: React.FC = () => {
           icon={<PersonIcon />}
           value={id}
           onChange={onChangeId}
-          validateMode={validateMode}
           useValidation
           isValid={!!id}
           errorMessage="please fill id input"
@@ -184,7 +186,6 @@ const SignUpModal: React.FC = () => {
           }
           value={password}
           onChange={onChangePassword}
-          validateMode={validateMode}
           useValidation
           isValid={!!password}
           errorMessage="please fill password input"
@@ -203,7 +204,6 @@ const SignUpModal: React.FC = () => {
           }
           value={passwordConfirm}
           onChange={onChangePasswordConfirm}
-          validateMode={validateMode}
           useValidation
           isValid={!!passwordConfirm}
           errorMessage="please fill password confirm input"
