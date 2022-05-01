@@ -6,3 +6,11 @@ export type StoredUserType = {
   birthday: string;
   profileImage: string;
 };
+
+export type UserType = {
+  userNo: number;
+  email: string;
+  id: string;
+  birthday: string;
+  profileImage: string;
+};

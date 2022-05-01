@@ -19,19 +19,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     const { email, id, password, passwordConfirm, birthday } = req.body;
 
-    try {
-      console.log("try");
-      Data.user.exist({ email });
-    } catch (e) {
-      console.log(e);
-      res.statusCode = 501;
-    }
-
-    if (true) {
-      res.statusCode = 411;
-      res.send("d");
-    }
-
     // 2 값 전부?
     if (!email || !id || !password || !passwordConfirm || !birthday) {
       res.statusCode = 400;
@@ -79,7 +66,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       )}; httponly`
     );
 
-    return res.end();
+    // password는 제거 후 토큰,유저정보 전달
+    // typescript의 유틸리티 이용해서 password를 partial로 만든 타입을 만든 후 delete사용
+    const newUserWithoutPassword: Partial<Pick<StoredUserType, "password">> =
+      newUser;
+
+    delete newUserWithoutPassword.password;
+    res.statusCode = 200;
+    return res.send(newUser);
   }
 
   res.statusCode = 405;

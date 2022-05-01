@@ -12,7 +12,8 @@ import Selector from "../common/Selector";
 import useModal from "../../hooks/useModal";
 import Button from "../common/Button";
 import { signupAPI } from "../../lib/api/auth";
-import Data from "../../lib/data";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../store/user";
 
 const Container = styled.form`
   width: 568px;
@@ -76,6 +77,8 @@ const SignUpModal: React.FC = () => {
   const [birthMonth, setBirthMonth] = useState<string | undefined>();
   const [birthDay, setBirthDay] = useState<string | undefined>();
 
+  const dispatch = useDispatch();
+
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
@@ -112,6 +115,7 @@ const SignUpModal: React.FC = () => {
 
   const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     try {
       const signUpBody = {
         email,
@@ -120,9 +124,13 @@ const SignUpModal: React.FC = () => {
         passwordConfirm,
         birthday: new Date(
           `${birthYear}-${birthMonth}-${birthDay}`
-        ).toISOString(),
+        ).toUTCString(),
       };
+      console.log(signUpBody);
       await signupAPI(signUpBody);
+
+      const { data } = await signupAPI(signUpBody);
+      dispatch(userActions.setLoggedUser(data));
     } catch (e) {
       console.log("e:", e);
     }
