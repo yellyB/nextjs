@@ -55,6 +55,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     };
     Data.user.write([...users, newUser]);
 
+    /* 
     // 6 토큰
     const token = jwt.sign(String(newUser.userNo), process.env.JWT_SECRET!);
     // 토큰을 쿠키에 3일간 저장
@@ -72,6 +73,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       newUser;
 
     delete newUserWithoutPassword.password;
+    */
     res.statusCode = 200;
     return res.send(newUser);
   }

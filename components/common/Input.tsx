@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { useSelector } from "../../store";
 import palette from "../../styles/palette";
 
 type InputContainerProps = {
@@ -65,19 +66,19 @@ const Container = styled.div<InputContainerProps>`
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
   icon?: JSX.Element;
   isValid?: boolean; // 입력 되었는지 여부
-  validateMode?: boolean; // 처음엔 빈칸이어도 에러 안띄우기 위해
   useValidation?: boolean; // 유효성 검사 사용할건지?
   errorMessage?: string;
 }
 
 const Input: React.FC<IProps> = ({
   icon,
-  validateMode = false,
   isValid = false,
   useValidation = true,
   errorMessage,
   ...props
 }) => {
+  const validateMode = useSelector((state) => state.common.validateMode);
+
   return (
     <Container
       iconExist={!!icon}

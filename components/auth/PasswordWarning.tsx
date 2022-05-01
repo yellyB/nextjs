@@ -6,7 +6,7 @@ import pallete from "../../styles/palette";
 
 const Container = styled.p<{ isValid: boolean }>`
   color: ${({ isValid }) =>
-    isValid ? pallete.davidson_orange : pallete.green};
+    isValid ? pallete.green : pallete.davidson_orange};
   line-height: 1.5;
   display: flex;
   align-items: center;
@@ -23,7 +23,7 @@ interface IProps {
 const PasswordWarning: React.FC<IProps> = ({ isValid, text }) => {
   return (
     <Container isValid={isValid}>
-      {isValid ? <RedXIcon /> : <GreenCheckIcon />}
+      {isValid ? <GreenCheckIcon /> : <RedXIcon />}
       {text}
     </Container>
   );

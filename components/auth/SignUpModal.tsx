@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import CloseXIcon from "../../public/static/svg/modal/close_icon.svg";
 import MailIcon from "../../public/static/svg/modal/email.svg";
@@ -70,9 +70,13 @@ const Container = styled.form`
   }
 `;
 
+interface IProps {
+  closeModal: () => void;
+}
+
 const PASSWORD_MIN_LENGTH = 8;
 
-const SignUpModal: React.FC = () => {
+const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
@@ -140,15 +144,23 @@ const SignUpModal: React.FC = () => {
     [password]
   );
 
+  const validateSignUpForm = () => {
+    if (!email || !id || !password) return false;
+
+    if (!isPasswordOverMinLength || isPasswordHasNumberOrSymbol) return false;
+
+    if (!birthYear || !birthMonth || !birthDay) return false;
+
+    return true;
+  };
+
   const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     // dispatch(commonActions.setValidateMode(true));
     setValidateMode(true); // 위를 커스텀 훅 만들어서 변경
 
-    if (!email || !id || !password) {
-      return undefined;
-    }
+    if (!validateSignUpForm()) return;
 
     try {
       const signUpBody = {
@@ -160,20 +172,26 @@ const SignUpModal: React.FC = () => {
           `${birthYear}-${birthMonth}-${birthDay}`
         ).toUTCString(),
       };
-      console.log(signUpBody);
-      await signupAPI(signUpBody);
-
+      //   console.log(signUpBody);
       const { data } = await signupAPI(signUpBody);
       dispatch(userActions.setLoggedUser(data));
     } catch (e) {
       console.log("e:", e);
+    } finally {
+      closeModal();
     }
   };
+
+  useEffect(() => {
+    return () => {
+      setValidateMode(false);
+    };
+  }, []);
 
   return (
     <Container onSubmit={onSubmitSignUp}>
       Sign Up
-      <CloseXIcon className="modal-close-x-icon" />
+      <CloseXIcon className="modal-close-x-icon" onClick={closeModal} />
       <div className="input-wrapper">
         <Input
           placeholder="email"
@@ -213,18 +231,18 @@ const SignUpModal: React.FC = () => {
           onChange={onChangePassword}
           onFocus={onFocusPassword}
           useValidation
-          isValid={!isPasswordOverMinLength && !isPasswordHasNumberOrSymbol}
+          isValid={isPasswordOverMinLength && !isPasswordHasNumberOrSymbol}
           errorMessage="please fill password input"
         />
       </div>
       {passwordFocused && (
         <>
           <PasswordWarning
-            isValid={!isPasswordOverMinLength}
+            isValid={isPasswordOverMinLength}
             text="password must atleast 8 length"
           />
           <PasswordWarning
-            isValid={isPasswordHasNumberOrSymbol}
+            isValid={!isPasswordHasNumberOrSymbol}
             text="password must contain number or symbol"
           />
         </>
@@ -255,6 +273,7 @@ const SignUpModal: React.FC = () => {
             defaultValue="year"
             value={birthYear}
             onChange={onChangeBirthYear}
+            isValid={!!birthYear}
           />
         </div>
         <div className="signup-modal-birthday-month-selector">
@@ -264,6 +283,7 @@ const SignUpModal: React.FC = () => {
             defaultValue="month"
             value={birthMonth}
             onChange={onChangeBirthMonth}
+            isValid={!!birthMonth}
           />
         </div>
         <div className="signup-modal-birthday-day-selector">
@@ -273,6 +293,7 @@ const SignUpModal: React.FC = () => {
             defaultValue="day"
             value={birthDay}
             onChange={onChangeBirthDay}
+            isValid={!!birthDay}
           />
         </div>
       </div>
