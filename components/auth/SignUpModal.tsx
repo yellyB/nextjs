@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styled from "styled-components";
 import CloseXIcon from "../../public/static/svg/modal/close_icon.svg";
 import MailIcon from "../../public/static/svg/modal/email.svg";
@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user";
 import { commonActions } from "../../store/common";
 import useValidateMode from "../../hooks/useValidateMode";
+import PasswordWarning from "./PasswordWarning";
 
 const Container = styled.form`
   width: 568px;
@@ -69,15 +70,18 @@ const Container = styled.form`
   }
 `;
 
+const PASSWORD_MIN_LENGTH = 8;
+
 const SignUpModal: React.FC = () => {
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
-  const [hidePassword, setHidePassword] = useState(true);
   const [birthYear, setBirthYear] = useState<string | undefined>();
   const [birthMonth, setBirthMonth] = useState<string | undefined>();
   const [birthDay, setBirthDay] = useState<string | undefined>();
+  const [hidePassword, setHidePassword] = useState(true);
+  const [passwordFocused, setPasswordFocused] = useState(false);
 
   const dispatch = useDispatch();
   const { setValidateMode } = useValidateMode();
@@ -116,6 +120,26 @@ const SignUpModal: React.FC = () => {
     setBirthDay(event.target.value);
   };
 
+  const onFocusPassword = () => {
+    setPasswordFocused(true);
+  };
+
+  // useMemo로 재연산 방지
+  const isPasswordOverMinLength = useMemo(
+    () => !!password && password.length >= PASSWORD_MIN_LENGTH,
+    [password]
+  );
+
+  // 비밀번호가 숫자, 특수기호 둘 중 하나 포함?
+  const isPasswordHasNumberOrSymbol = useMemo(
+    () =>
+      !(
+        /[{}[\]/?.,;:|)*~`!^\-_+<>@#$%&\\=('"]/g.test(password) ||
+        /[0-9]/g.test(password)
+      ),
+    [password]
+  );
+
   const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
@@ -145,6 +169,7 @@ const SignUpModal: React.FC = () => {
       console.log("e:", e);
     }
   };
+
   return (
     <Container onSubmit={onSubmitSignUp}>
       Sign Up
@@ -186,11 +211,24 @@ const SignUpModal: React.FC = () => {
           }
           value={password}
           onChange={onChangePassword}
+          onFocus={onFocusPassword}
           useValidation
-          isValid={!!password}
+          isValid={!isPasswordOverMinLength && !isPasswordHasNumberOrSymbol}
           errorMessage="please fill password input"
         />
       </div>
+      {passwordFocused && (
+        <>
+          <PasswordWarning
+            isValid={!isPasswordOverMinLength}
+            text="password must atleast 8 length"
+          />
+          <PasswordWarning
+            isValid={isPasswordHasNumberOrSymbol}
+            text="password must contain number or symbol"
+          />
+        </>
+      )}
       <div className="input-wrapper signup-password-input-wrapper ">
         <Input
           placeholder="password confirm"
