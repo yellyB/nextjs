@@ -17,6 +17,7 @@ import { userActions } from "../../store/user";
 import { commonActions } from "../../store/common";
 import useValidateMode from "../../hooks/useValidateMode";
 import PasswordWarning from "./PasswordWarning";
+import { authActions } from "../../store/auth";
 
 const Container = styled.form`
   width: 568px;
@@ -68,6 +69,11 @@ const Container = styled.form`
     padding-bottom: 16px;
     /* border-bottom: 1px solid ${palette.gray_eb}; */
   }
+  .signup-modal-set-signin {
+    /* color: ${palette.dark_cyan}; */
+    /* margin-left: 8px; */
+    cursor: pointer;
+  }
 `;
 
 interface IProps {
@@ -78,7 +84,6 @@ const PASSWORD_MIN_LENGTH = 8;
 
 const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   const [email, setEmail] = useState("");
-  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [birthYear, setBirthYear] = useState<string | undefined>();
@@ -92,10 +97,6 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
 
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
-  };
-
-  const onChangeId = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setId(event.target.value);
   };
 
   const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -128,6 +129,10 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
     setPasswordFocused(true);
   };
 
+  const changeToSignInModal = () => {
+    dispatch(authActions.setAuthMode("signin"));
+  };
+
   // useMemo로 재연산 방지
   const isPasswordOverMinLength = useMemo(
     () => !!password && password.length >= PASSWORD_MIN_LENGTH,
@@ -145,7 +150,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   );
 
   const validateSignUpForm = () => {
-    if (!email || !id || !password) return false;
+    if (!email || !password) return false;
 
     if (!isPasswordOverMinLength || isPasswordHasNumberOrSymbol) return false;
 
@@ -165,7 +170,6 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
     try {
       const signUpBody = {
         email,
-        id,
         password,
         passwordConfirm,
         birthday: new Date(
@@ -175,10 +179,10 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
       //   console.log(signUpBody);
       const { data } = await signupAPI(signUpBody);
       dispatch(userActions.setLoggedUser(data));
+      closeModal();
     } catch (e) {
       console.log("e:", e);
-    } finally {
-      closeModal();
+      alert("문제가 발생하였습니다.");
     }
   };
 
@@ -203,17 +207,6 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
           useValidation
           isValid={!!email}
           errorMessage="please fill email input"
-        />
-      </div>
-      <div className="input-wrapper">
-        <Input
-          placeholder="id"
-          icon={<PersonIcon />}
-          value={id}
-          onChange={onChangeId}
-          useValidation
-          isValid={!!id}
-          errorMessage="please fill id input"
         />
       </div>
       <div className="input-wrapper signup-password-input-wrapper ">
@@ -298,8 +291,15 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         </div>
       </div>
       <div className="signup-modal-submit-button-wrapper">
-        <Button type="submit">SignUp</Button>
+        <Button type="submit">Sign Up</Button>
       </div>
+      <span
+        className="signup-modal-set-signin"
+        role="presentation"
+        onClick={changeToSignInModal}
+      >
+        Sign In
+      </span>
     </Container>
   );
 };

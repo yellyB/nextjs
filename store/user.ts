@@ -5,7 +5,6 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 const initialState: UserState = {
   userNo: 0,
   email: "",
-  id: "",
   birthday: "",
   isLogged: false,
   profileImage: "",

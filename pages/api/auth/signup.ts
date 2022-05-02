@@ -48,7 +48,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const newUser: StoredUserType = {
       userNo: userNo,
       email: email,
-      id: id,
       password: hashedPassword,
       birthday: birthday,
       profileImage: "/static/image/user/default_profile.png",
