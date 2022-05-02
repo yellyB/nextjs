@@ -22,4 +22,10 @@ const write = async (users: StoredUserType[]) => {
   writeFileSync("data/users.json", JSON.stringify(users));
 };
 
-export default { getList, exist, write };
+// 로그인 - 유저 찾기
+const find = ({ email }: { email: string }) => {
+  const users = getList();
+  return users.find((user) => user.email === email);
+};
+
+export default { getList, exist, write, find };

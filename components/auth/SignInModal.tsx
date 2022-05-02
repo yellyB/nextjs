@@ -11,7 +11,7 @@ import { dayList, monthList, yearList } from "../../lib/staticData";
 import Selector from "../common/Selector";
 import useModal from "../../hooks/useModal";
 import Button from "../common/Button";
-import { signupAPI } from "../../lib/api/auth";
+import { signinAPI, signupAPI } from "../../lib/api/auth";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user";
 import { commonActions } from "../../store/common";
@@ -81,35 +81,22 @@ const SignInModal: React.FC<IProps> = ({ closeModal }) => {
     dispatch(authActions.setAuthMode("signup"));
   };
 
-  // useMemo로 재연산 방지
-  const isPasswordOverMinLength = useMemo(
-    () => !!password && password.length >= PASSWORD_MIN_LENGTH,
-    [password]
-  );
-
-  // 비밀번호가 숫자, 특수기호 둘 중 하나 포함?
-  const isPasswordHasNumberOrSymbol = useMemo(
-    () =>
-      !(
-        /[{}[\]/?.,;:|)*~`!^\-_+<>@#$%&\\=('"]/g.test(password) ||
-        /[0-9]/g.test(password)
-      ),
-    [password]
-  );
-
-  const validateSignUpForm = () => {
-    if (!isPasswordOverMinLength || isPasswordHasNumberOrSymbol) return false;
-
-    return true;
-  };
-
-  const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // dispatch(commonActions.setValidateMode(true));
-    setValidateMode(true); // 위를 커스텀 훅 만들어서 변경
-
-    if (!validateSignUpForm()) return;
+    setValidateMode(true);
+    if (!email || !password) {
+      alert("please fill input.");
+    } else {
+      const loginBody = { email, password };
+      try {
+        const { data } = await signinAPI(loginBody);
+        dispatch(userActions.setLoggedUser(data));
+        closeModal();
+      } catch (e) {
+        console.log(e);
+      }
+    }
   };
 
   useEffect(() => {
@@ -119,7 +106,7 @@ const SignInModal: React.FC<IProps> = ({ closeModal }) => {
   }, []);
 
   return (
-    <Container>
+    <Container onSubmit={onSubmitSignIn}>
       <CloseXIcon className="modal-close-x-icon" onClick={closeModal} />
       <div className="input-wrapper">
         <Input
@@ -129,9 +116,6 @@ const SignInModal: React.FC<IProps> = ({ closeModal }) => {
           icon={<MailIcon />}
           value={email}
           onChange={onChangeEmail}
-          // useValidation
-          // isValid={!!email}
-          // errorMessage="please fill email input"
         />
       </div>
       <div className="input-wrapper signup-password-input-wrapper ">
@@ -145,10 +129,8 @@ const SignInModal: React.FC<IProps> = ({ closeModal }) => {
               <EyeClosedIcon onClick={toggleHidePassword} />
             )
           }
-          // onFocus={onFocusPassword}
-          // useValidation
-          // isValid={isPasswordOverMinLength && !isPasswordHasNumberOrSymbol}
-          // errorMessage="please fill password input"
+          value={password}
+          onChange={onChangePassword}
         />
       </div>
       <div className="signin-modal-submit-button-wrapper">

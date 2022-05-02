@@ -160,7 +160,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   };
 
   const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+    event.preventDefault(); // 페이지 리로딩 방지
 
     // dispatch(commonActions.setValidateMode(true));
     setValidateMode(true); // 위를 커스텀 훅 만들어서 변경

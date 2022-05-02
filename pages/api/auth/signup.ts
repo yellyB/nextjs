@@ -17,10 +17,10 @@ import jwt from "jsonwebtoken";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   // 1 메서드 POST?
   if (req.method === "POST") {
-    const { email, id, password, passwordConfirm, birthday } = req.body;
+    const { email, password, passwordConfirm, birthday } = req.body;
 
     // 2 값 전부?
-    if (!email || !id || !password || !passwordConfirm || !birthday) {
+    if (!email || !password || !passwordConfirm || !birthday) {
       res.statusCode = 400;
       return res.send("입력되지 않은 데이터가 있습니다.");
     }
