@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import Data from "../../../lib/data";
 import bcrypt from "bcryptjs";
+import Data from "../../../lib/data";
 import { StoredUserType } from "../../../types/user";
-import jwt from "jsonwebtoken";
+// import jwt from "jsonwebtoken";
 
 /*
 [회원가입 api]
@@ -46,15 +46,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     const newUser: StoredUserType = {
-      userNo: userNo,
-      email: email,
+      userNo,
+      email,
       password: hashedPassword,
-      birthday: birthday,
+      birthday,
       profileImage: "/static/image/user/default_profile.png",
     };
     Data.user.write([...users, newUser]);
 
-    /* 
+    /*
     // 6 토큰
     const token = jwt.sign(String(newUser.userNo), process.env.JWT_SECRET!);
     // 토큰을 쿠키에 3일간 저장

@@ -13,3 +13,6 @@ export const signupAPI = (body: SignUpAPIBody) =>
 
 export const signinAPI = (body: { email: string; password: string }) =>
   axios.post<UserType>("/api/auth/signin", body);
+
+// 쿠키에 저장된 유저 가져오기
+export const meAPI = () => axios.get<UserType>("/api/auth/me");

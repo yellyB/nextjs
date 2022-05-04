@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import CloseXIcon from "../../public/static/svg/modal/close_icon.svg";
 import MailIcon from "../../public/static/svg/modal/email.svg";
 import PersonIcon from "../../public/static/svg/modal/person.svg";
@@ -12,7 +13,6 @@ import Selector from "../common/Selector";
 import useModal from "../../hooks/useModal";
 import Button from "../common/Button";
 import { signupAPI } from "../../lib/api/auth";
-import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user";
 import { commonActions } from "../../store/common";
 import useValidateMode from "../../hooks/useValidateMode";

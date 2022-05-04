@@ -83,10 +83,9 @@ const SignInModal: React.FC<IProps> = ({ closeModal }) => {
 
   const onSubmitSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     setValidateMode(true);
     if (!email || !password) {
-      alert("please fill input.");
+      return;
     } else {
       const loginBody = { email, password };
       try {
@@ -116,6 +115,8 @@ const SignInModal: React.FC<IProps> = ({ closeModal }) => {
           icon={<MailIcon />}
           value={email}
           onChange={onChangeEmail}
+          isValid={email !== ""}
+          errorMessage="please fill email"
         />
       </div>
       <div className="input-wrapper signup-password-input-wrapper ">
@@ -131,6 +132,8 @@ const SignInModal: React.FC<IProps> = ({ closeModal }) => {
           }
           value={password}
           onChange={onChangePassword}
+          isValid={password !== ""}
+          errorMessage="please fill password"
         />
       </div>
       <div className="signin-modal-submit-button-wrapper">

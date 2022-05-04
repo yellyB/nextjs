@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import Data from "../../../lib/data";
 import bcrypt from "bcryptjs";
+import Data from "../../../lib/data";
 import { StoredUserType } from "../../../types/user";
-import jwt from "jsonwebtoken";
+// import jwt from "jsonwebtoken";
 
 /*
 [로그인 api]
@@ -38,7 +38,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return res.send("비밀번호가 일치하지 않습니다.");
       }
 
-      /* 
+      /*
     // 4 토큰
     const token = jwt.sign(String(newUser.userNo), process.env.JWT_SECRET!);
     // 토큰을 쿠키에 3일간 저장
