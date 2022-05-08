@@ -16,3 +16,5 @@ export const signinAPI = (body: { email: string; password: string }) =>
 
 // 쿠키에 저장된 유저 가져오기
 export const meAPI = () => axios.get<UserType>("/api/auth/me");
+
+export const singoutAPI = () => axios.delete("/api/auth/signout");

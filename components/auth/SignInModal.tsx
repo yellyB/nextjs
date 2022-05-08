@@ -85,6 +85,7 @@ const SignInModal: React.FC<IProps> = ({ closeModal }) => {
     event.preventDefault();
     setValidateMode(true);
     if (!email || !password) {
+      alert("please fill inputs");
       return;
     } else {
       const loginBody = { email, password };
@@ -94,6 +95,7 @@ const SignInModal: React.FC<IProps> = ({ closeModal }) => {
         closeModal();
       } catch (e) {
         console.log(e);
+        alert(e.response.data);
       }
     }
   };

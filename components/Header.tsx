@@ -11,6 +11,8 @@ import useModal from "../hooks/useModal";
 import { useSelector } from "../store";
 import { authActions } from "../store/auth";
 import { useDispatch } from "react-redux";
+import { singoutAPI } from "../lib/api/auth";
+import { userActions } from "../store/user";
 
 const Container = styled.div`
   position: sticky; // header를 맨 위 고정
@@ -105,6 +107,15 @@ const Header: React.FC = () => {
     openModal();
   };
 
+  const signout = async () => {
+    try {
+      await singoutAPI();
+      dispatch(userActions.clearUser());
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
   return (
     <Container>
       <Link href="/">
@@ -114,14 +125,17 @@ const Header: React.FC = () => {
         </a>
       </Link>
       {user.isLogged ? (
-        <button className="header-user-profile" type="button">
-          <HamburgerIcon />
-          <img
-            src={user.profileImage}
-            className="header-user-profile-image"
-            alt=""
-          />
-        </button>
+        <>
+          <button className="header-user-profile" type="button">
+            <HamburgerIcon />
+            <img
+              src={user.profileImage}
+              className="header-user-profile-image"
+              alt=""
+            />
+          </button>
+          <button onClick={signout}>logout</button>
+        </>
       ) : (
         <div className="header-auth-buttons">
           <button
