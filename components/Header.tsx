@@ -94,6 +94,37 @@ const Container = styled.div`
       /* border-radius: 50%; */
     }
   }
+
+  .header-logo-wrapper + div {
+    position: relative;
+  }
+  .header-usermenu {
+    position: absolute;
+    right: 0;
+    top: 52px;
+    width: 240px;
+    padding: 8px 0;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
+    background-color: white;
+    li {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 42px;
+      padding: 0 16px;
+      cursor: pointer;
+      &:hover {
+        background-color: ${palette.gray_f7};
+      }
+    }
+    .header-usermenu-divider {
+      width: 100%;
+      height: 1px;
+      margin: 8px 0;
+      background-color: ${palette.gray_dd};
+    }
+  }
 `;
 
 const Header: React.FC = () => {
@@ -101,6 +132,8 @@ const Header: React.FC = () => {
   const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
+
+  const [isUsermenuOpend, setIsUsermenuOpend] = useState(false);
 
   const openModalOnClick = (type: "signup" | "signin") => {
     dispatch(authActions.setAuthMode(type));
@@ -114,6 +147,7 @@ const Header: React.FC = () => {
     } catch (e) {
       console.log(e.message);
     }
+    setIsUsermenuOpend(false);
   };
 
   return (
@@ -126,7 +160,11 @@ const Header: React.FC = () => {
       </Link>
       {user.isLogged ? (
         <>
-          <button className="header-user-profile" type="button">
+          <button
+            className="header-user-profile"
+            type="button"
+            onClick={() => setIsUsermenuOpend(!isUsermenuOpend)}
+          >
             <HamburgerIcon />
             <img
               src={user.profileImage}
@@ -134,7 +172,23 @@ const Header: React.FC = () => {
               alt=""
             />
           </button>
-          <button onClick={signout}>logout</button>
+          {isUsermenuOpend && (
+            <ul className="header-usermenu">
+              <li>manage</li>
+              <Link href="/room/register/building">
+                <a
+                  role="presentation"
+                  onClick={() => setIsUsermenuOpend(false)}
+                >
+                  <li>register</li>
+                </a>
+              </Link>
+              <div className="header-usermenu-divider" />
+              <li role="presentation" onClick={signout}>
+                sign out
+              </li>
+            </ul>
+          )}
         </>
       ) : (
         <div className="header-auth-buttons">
