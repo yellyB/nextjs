@@ -94,4 +94,5 @@ const Input: React.FC<IProps> = ({
   );
 };
 
-export default Input;
+// 인풋 값 변경시마다 렌더링 방지. memo사용
+export default React.memo(Input);
