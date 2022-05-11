@@ -82,6 +82,7 @@ interface IProps {
 
 const PASSWORD_MIN_LENGTH = 8;
 
+// 최적화를 위해 불변으로 관리
 const disabledYears = ["Year"];
 const disabledMonth = ["Month"];
 const disabledDays = ["Day"];
