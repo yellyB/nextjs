@@ -82,6 +82,10 @@ interface IProps {
 
 const PASSWORD_MIN_LENGTH = 8;
 
+const disabledYears = ["Year"];
+const disabledMonth = ["Month"];
+const disabledDays = ["Day"];
+
 const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -262,7 +266,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         <div className="signup-modal-birthday-year-selector">
           <Selector
             options={yearList}
-            disabledOptions={["year"]}
+            disabledOptions={disabledYears}
             defaultValue="year"
             value={birthYear}
             onChange={onChangeBirthYear}
@@ -272,7 +276,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         <div className="signup-modal-birthday-month-selector">
           <Selector
             options={monthList}
-            disabledOptions={["month"]}
+            disabledOptions={disabledMonth}
             defaultValue="month"
             value={birthMonth}
             onChange={onChangeBirthMonth}
@@ -282,7 +286,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         <div className="signup-modal-birthday-day-selector">
           <Selector
             options={dayList}
-            disabledOptions={["day"]}
+            disabledOptions={disabledDays}
             defaultValue="day"
             value={birthDay}
             onChange={onChangeBirthDay}
