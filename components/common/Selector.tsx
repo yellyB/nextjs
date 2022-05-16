@@ -94,6 +94,8 @@ const Container = styled.div<SelectorContainerProps>`
 
     svg {
       margin-right: 4px;
+      width: 20px;
+      height: 20px;
     }
     p {
       font-size: 12px;

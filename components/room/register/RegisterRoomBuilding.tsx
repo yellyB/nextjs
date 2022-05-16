@@ -5,7 +5,9 @@ import styled from "styled-components";
 import { largeBuildingTypeList } from "../../../lib/staticData";
 import { registerRoomActions } from "../../../store/registerRoom";
 import palette from "../../../styles/palette";
+import RadioGroup from "../../common/RadioGroup";
 import Selector from "../../common/Selector";
+import RegisterRoomFooter from "./RegisterRoomFooter";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -26,16 +28,40 @@ const Container = styled.div`
     width: 320px;
     margin-bottom: 32px;
   }
+
+  .register-room-type-radio {
+    max-width: 485px;
+    margin-bottom: 50px;
+  }
 `;
 
 const init = "please select one";
 const disabledLargeBuildingTypeOptions = [init];
+
+const roomTypeRadioOptions = [
+  {
+    label: "전체",
+    value: "entire",
+    description: "전체에 대한 설명",
+  },
+  {
+    label: "개인",
+    value: "private",
+    description: "개인에 대한 설명",
+  },
+  {
+    label: "공유",
+    value: "public",
+    description: "공유에 대한 설명",
+  },
+];
 
 const RegisterRoomBuilding: React.FC = () => {
   const largeBuildingType = useSelector(
     (state) => state.registerRoom.largeBuildingType
   );
   const buildingType = useSelector((state) => state.registerRoom.buildingType);
+  const roomType = useSelector((state) => state.registerRoom.roomType);
 
   const dispatch = useDispatch();
 
@@ -49,6 +75,10 @@ const RegisterRoomBuilding: React.FC = () => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     dispatch(registerRoomActions.setBuildingType(event.target.value));
+  };
+
+  const onChangeRoomType = (value: "entire" | "private" | "public") => {
+    dispatch(registerRoomActions.setRoomType(value));
   };
 
   // large building 이 결정되면 그에따른 스텝 2의 옵션들 불러옴
@@ -78,23 +108,32 @@ const RegisterRoomBuilding: React.FC = () => {
     }
   }, [largeBuildingType]);
 
+  const isValid = useMemo(() => {
+    if (!largeBuildingType || !buildingType || !roomType) {
+      return false;
+    }
+    return true;
+  }, [largeBuildingType, buildingType, roomType]);
+
   return (
     <Container>
       <h2>등록할 숙소?</h2>
       <h3>1step</h3>
       <div className="register-room-building-selector-wrapper">
         <Selector
+          isValid={!!largeBuildingType}
           type="register"
           value={largeBuildingType || undefined}
           defaultValue={init}
           disabledOptions={disabledLargeBuildingTypeOptions}
-          label="우선 범위를 좁혀볼"
+          label="건물 종류 선택"
           options={largeBuildingTypeList}
           onChange={onChangeLargeBuildingType}
         />
       </div>
       <div className="register-room-building-selector-wrapper">
         <Selector
+          isValid={!!buildingType}
           type="register"
           value={buildingType || undefined}
           //   defaultValue={init}
@@ -104,6 +143,23 @@ const RegisterRoomBuilding: React.FC = () => {
           onChange={onChangeBuildingType}
         />
       </div>
+      {buildingType && (
+        <div className="register-room-type-radio">
+          <RadioGroup
+            isValid={!!roomType}
+            label="유형을 선택"
+            value={roomType}
+            options={roomTypeRadioOptions}
+            onChange={onChangeRoomType}
+          />
+        </div>
+      )}
+
+      <RegisterRoomFooter
+        isValid={isValid}
+        prevHref="/"
+        nextHref="/room/register/bedrooms"
+      />
     </Container>
   );
 };
