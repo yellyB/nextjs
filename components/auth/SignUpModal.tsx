@@ -296,7 +296,9 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         </div>
       </div>
       <div className="signup-modal-submit-button-wrapper">
-        <Button type="submit">Sign Up</Button>
+        <Button type="submit" color="bittersweet">
+          Sign Up
+        </Button>
       </div>
       <span
         className="signup-modal-set-signin"
