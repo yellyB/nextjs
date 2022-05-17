@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -10,6 +10,7 @@ import NavigationIcon from "../../../public/static/svg/register/navigation.svg";
 import Selector from "../../common/Selector";
 import { countryList } from "../../../lib/staticData";
 import Input from "../../common/Input";
+import { getLocationInfoAPI } from "../../../lib/api/map";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -58,6 +59,8 @@ const Container = styled.div`
   }
 `;
 
+const defaultSelector = "나라 선택";
+
 const RegisterLocation: React.FC = () => {
   const country = useSelector((state) => state.registerRoom.country);
   const city = useSelector((state) => state.registerRoom.city);
@@ -72,14 +75,63 @@ const RegisterLocation: React.FC = () => {
 
   const dispatch = useDispatch();
 
+  const [loading, setLoading] = useState(false);
+
   const onChangeCountry = (event: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(registerRoomActions.setCountry(event.target.value));
+  };
+
+  const onChangeCity = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(registerRoomActions.setCity(event.target.value));
+  };
+
+  const onChangeDistrict = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(registerRoomActions.setDistrict(event.target.value));
   };
 
   const onChangeStreetAddress = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     dispatch(registerRoomActions.setStreetAddress(event.target.value));
+  };
+
+  //*우편번호 변경시
+  const onChangePostcode = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(registerRoomActions.setPostcode(e.target.value));
+  };
+
+  const onSuccessGetLocation = async ({ coords }: any) => {
+    try {
+      const { data: currentLocation } = await getLocationInfoAPI({
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+      });
+      console.log(currentLocation);
+      dispatch(registerRoomActions.setCountry(currentLocation.country));
+      dispatch(registerRoomActions.setCity(currentLocation.city));
+      dispatch(registerRoomActions.setDistrict(currentLocation.district));
+      dispatch(
+        registerRoomActions.setStreetAddress(currentLocation.streetAddress)
+      );
+      dispatch(registerRoomActions.setPostcode(currentLocation.postcode));
+      dispatch(registerRoomActions.setLatitude(currentLocation.latitude));
+      dispatch(registerRoomActions.setLongitude(currentLocation.longitude));
+    } catch (e) {
+      console.log(e);
+      alert(e?.message);
+    }
+    setLoading(false);
+    // console.log("latitude:", coords.latitude);
+    // console.log("longitude:", coords.longitude);
+  };
+
+  const onClickGetCurrentLocation = () => {
+    setLoading(true);
+    // getCurrentPosition -> 첫번째 인자로 성공했을 때 함수, 두번째 인자로 실패시 함수
+    navigator.geolocation.getCurrentPosition(onSuccessGetLocation, (e) => {
+      console.log(e);
+      alert(e?.message);
+    });
   };
 
   // const isValid = useMemo(() => {
@@ -96,8 +148,13 @@ const RegisterLocation: React.FC = () => {
       <p>정확한 숙소 주소는 게스트가 예약을 완료한 후에만 공개됩니다.</p>
 
       <div className="register-room-location-button-wrapper">
-        <Button color="dark_cyan" colorReverse icon={<NavigationIcon />}>
-          현재 위치 사용
+        <Button
+          color="dark_cyan"
+          colorReverse
+          icon={<NavigationIcon />}
+          onClick={onClickGetCurrentLocation}
+        >
+          {loading ? "기다리시게.." : "현재 위치 사용"}
         </Button>
       </div>
       <div className="register-room-location-country-selector-wrapper">
@@ -105,15 +162,15 @@ const RegisterLocation: React.FC = () => {
           type="register"
           options={countryList}
           useValidation={false}
-          defaultValue="지역 선택"
-          disabledOptions={["지역 선택"]}
-          value={country}
+          defaultValue={defaultSelector}
+          disabledOptions={[defaultSelector]}
+          value={country || undefined}
           onChange={onChangeCountry}
         />
       </div>
       <div className="register-room-location-city-district">
-        <Input label="시/도" />
-        <Input label="시/군/구" />
+        <Input label="시/도" value={city} onChange={onChangeCity} />
+        <Input label="시/군/구" value={district} onChange={onChangeDistrict} />
       </div>
       <div className="register-room-location-street-address">
         <Input
@@ -122,18 +179,14 @@ const RegisterLocation: React.FC = () => {
           onChange={onChangeStreetAddress}
         />
       </div>
-      <div className="register-room-location-detail-address">
-        <Input label="동호수" useValidation={false} />
-      </div>
       <div className="register-room-location-postcode">
-        <Input label="우편번호" />
+        <Input label="우편번호" value={postcode} onChange={onChangePostcode} />
       </div>
 
-      {/* <RegisterRoomFooter
-        isValid={isValid}
-        prevHref="/"
-        nextHref="/room/register/location"
-      /> */}
+      <RegisterRoomFooter
+        prevHref="/room/register/building"
+        nextHref="/room/register/geometry"
+      />
     </Container>
   );
 };

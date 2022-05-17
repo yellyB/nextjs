@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import RegisterLocation from "../../../components/room/register/RegisterRoomLocation";
+import RegisterLocation from "../../../components/room/register/RegisterLocation";
 
 const location: NextPage = () => {
   return <RegisterLocation />;
