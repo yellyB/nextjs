@@ -33,6 +33,12 @@ const Container = styled.div<InputContainerProps>`
     width: 20px;
     height: 20px;
   }
+  label {
+    span {
+      display: block;
+      margin-bottom: 8px;
+    }
+  }
   .input-error-message {
     margin-top: 8px;
     font-weight: 600;
@@ -64,6 +70,7 @@ const Container = styled.div<InputContainerProps>`
 
 // input 태그가 가지는 속성에 대한 타입.... 을 확장
 interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
   icon?: JSX.Element;
   isValid?: boolean; // 입력 되었는지 여부
   useValidation?: boolean; // 유효성 검사 사용할건지?
@@ -71,6 +78,7 @@ interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input: React.FC<IProps> = ({
+  label,
   icon,
   isValid = false,
   useValidation = true,
@@ -85,7 +93,13 @@ const Input: React.FC<IProps> = ({
       isValid={isValid}
       useValidation={validateMode && useValidation}
     >
-      <input {...props} />
+      {label && (
+        <label>
+          <span>{label}</span>
+          <input {...props} />
+        </label>
+      )}
+      {!label && <input {...props} />}
       {icon}
       {useValidation && validateMode && !isValid && errorMessage && (
         <p className="input-error-message">{errorMessage}</p>

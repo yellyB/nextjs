@@ -13,3 +13,5 @@ export const apartBuildingTypeList = ["언데드", "정령", "헤드리스", "�
 export const houstBuildingTypeList = ["슬라임", "오크", "골렘", "발록"];
 
 export const secondaryBuildingTypeList = ["고스트", "카오스", "절망"];
+
+export const countryList = ["주서스", "세우르", "부카", "다에굴"];

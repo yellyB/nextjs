@@ -61,7 +61,8 @@ const Container = styled.button<StyledButtonProps>`
   ${(props) => getButtonColor(props.color || "", props.colorReverse)};
 
   svg {
-    margin-right: 12px;
+    margin-right: 6px;
+    width: 18px;
   }
 `;
 
