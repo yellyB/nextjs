@@ -35,24 +35,24 @@ const Container = styled.div`
   }
 `;
 
-const init = "please select one";
+const init = "select one";
 const disabledLargeBuildingTypeOptions = [init];
 
 const roomTypeRadioOptions = [
   {
-    label: "전체",
+    label: "종족 전체",
     value: "entire",
-    description: "전체에 대한 설명",
+    description: "종족 전체가 지원합니다.",
   },
   {
     label: "개인",
     value: "private",
-    description: "개인에 대한 설명",
+    description: "작성자 혼자 지원합니다.",
   },
   {
-    label: "공유",
+    label: "일부",
     value: "public",
-    description: "공유에 대한 설명",
+    description: "종족의 일부만 지원합니다.",
   },
 ];
 
@@ -84,17 +84,17 @@ const RegisterRoomBuilding: React.FC = () => {
   // large building 이 결정되면 그에따른 스텝 2의 옵션들 불러옴
   const detailBuildingOptions = useMemo(() => {
     switch (largeBuildingType) {
-      case "아파트": {
+      case "인간형": {
         const { apartBuildingTypeList } = require("../../../lib/staticData");
         dispatch(registerRoomActions.setBuildingType(apartBuildingTypeList[0]));
-        return [apartBuildingTypeList];
+        return apartBuildingTypeList;
       }
-      case "주택": {
+      case "자연형": {
         const { houstBuildingTypeList } = require("../../../lib/staticData");
         dispatch(registerRoomActions.setBuildingType(houstBuildingTypeList[0]));
         return houstBuildingTypeList;
       }
-      case "별채": {
+      case "무형": {
         const {
           secondaryBuildingTypeList,
         } = require("../../../lib/staticData");
@@ -117,7 +117,7 @@ const RegisterRoomBuilding: React.FC = () => {
 
   return (
     <Container>
-      <h2>등록할 숙소?</h2>
+      <h2>당신은 무슨 타입 종족입니까?</h2>
       <h3>1step</h3>
       <div className="register-room-building-selector-wrapper">
         <Selector
@@ -126,7 +126,7 @@ const RegisterRoomBuilding: React.FC = () => {
           value={largeBuildingType || undefined}
           defaultValue={init}
           disabledOptions={disabledLargeBuildingTypeOptions}
-          label="건물 종류 선택"
+          label="종족 종류 선택"
           options={largeBuildingTypeList}
           onChange={onChangeLargeBuildingType}
         />
@@ -138,7 +138,7 @@ const RegisterRoomBuilding: React.FC = () => {
           value={buildingType || undefined}
           //   defaultValue={init}
           disabled={!largeBuildingType}
-          label="건물 유형을 선택"
+          label="종족 선택"
           options={detailBuildingOptions}
           onChange={onChangeBuildingType}
         />
@@ -147,7 +147,7 @@ const RegisterRoomBuilding: React.FC = () => {
         <div className="register-room-type-radio">
           <RadioGroup
             isValid={!!roomType}
-            label="유형을 선택"
+            label="함께 지원할 동족 여부"
             value={roomType}
             options={roomTypeRadioOptions}
             onChange={onChangeRoomType}
@@ -158,7 +158,7 @@ const RegisterRoomBuilding: React.FC = () => {
       <RegisterRoomFooter
         isValid={isValid}
         prevHref="/"
-        nextHref="/room/register/bedrooms"
+        nextHref="/room/register/location"
       />
     </Container>
   );

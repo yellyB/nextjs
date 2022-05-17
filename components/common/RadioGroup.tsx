@@ -85,6 +85,7 @@ const Container = styled.div<{ isValid: boolean; validateMode: boolean }>`
     display: block;
     margin-top: 5px;
     margin-left: 28px;
+    color: ${palette.gray_76};
   }
 
   .radio-group-warning {
