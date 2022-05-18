@@ -15,7 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const { lat, lng } = data.results[0].geometry.location;
       console.log(addressComponent);
       const result = {
-        latitud: lat,
+        latitude: lat,
         longitude: lng,
         country: addressComponent[4].long_name,
         city: addressComponent[3].long_name,

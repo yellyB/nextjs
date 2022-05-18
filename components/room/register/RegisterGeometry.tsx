@@ -101,7 +101,9 @@ const RegisterGeometry: React.FC = () => {
         throttle(() => {
           const centerLat = map.getCenter().lat();
           const centerLng = map.getCenter().lng();
-          marker.setPosition({ lat: centerLat, lng: centerLng });
+
+          marker.setPosition({ lat: latitude, lng: longitude });
+
           dispatch(registerRoomActions.setLatitude(centerLat));
           dispatch(registerRoomActions.setLongitude(centerLng));
         }, 150)
@@ -121,7 +123,6 @@ const RegisterGeometry: React.FC = () => {
       <div className="register-room-geometry-map-wrapper">
         <div ref={mapRef} id="map" />
       </div>
-
       <RegisterRoomFooter
         prevHref="/room/register/location"
         nextHref="/room/register/amentities"

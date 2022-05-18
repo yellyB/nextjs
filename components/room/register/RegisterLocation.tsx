@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -68,9 +68,6 @@ const RegisterLocation: React.FC = () => {
   const streetAddress = useSelector(
     (state) => state.registerRoom.streetAddress
   );
-  const detailAddress = useSelector(
-    (state) => state.registerRoom.detailAddress
-  );
   const postcode = useSelector((state) => state.registerRoom.postcode);
 
   const dispatch = useDispatch();
@@ -102,11 +99,18 @@ const RegisterLocation: React.FC = () => {
 
   const onSuccessGetLocation = async ({ coords }: any) => {
     try {
+      // console.log("latitude:", coords.latitude);
+      // console.log("longitude:", coords.longitude);
+
       const { data: currentLocation } = await getLocationInfoAPI({
         latitude: coords.latitude,
         longitude: coords.longitude,
       });
       console.log(currentLocation);
+
+      dispatch(registerRoomActions.setLatitude(coords.latitude));
+      dispatch(registerRoomActions.setLongitude(coords.longitude));
+
       dispatch(registerRoomActions.setCountry(currentLocation.country));
       dispatch(registerRoomActions.setCity(currentLocation.city));
       dispatch(registerRoomActions.setDistrict(currentLocation.district));
@@ -121,8 +125,6 @@ const RegisterLocation: React.FC = () => {
       alert(e?.message);
     }
     setLoading(false);
-    // console.log("latitude:", coords.latitude);
-    // console.log("longitude:", coords.longitude);
   };
 
   const onClickGetCurrentLocation = () => {
@@ -134,12 +136,12 @@ const RegisterLocation: React.FC = () => {
     });
   };
 
-  // const isValid = useMemo(() => {
-  //   if (!largeBuildingType || !buildingType || !roomType) {
-  //     return false;
-  //   }
-  //   return true;
-  // }, [largeBuildingType, buildingType, roomType]);
+  const isValid = useMemo(() => {
+    if (!country || !city || !district) {
+      return false;
+    }
+    return true;
+  }, [country, city, district]);
 
   return (
     <Container>
@@ -166,24 +168,42 @@ const RegisterLocation: React.FC = () => {
           disabledOptions={[defaultSelector]}
           value={country || undefined}
           onChange={onChangeCountry}
+          isValid={!!country}
         />
       </div>
       <div className="register-room-location-city-district">
-        <Input label="시/도" value={city} onChange={onChangeCity} />
-        <Input label="시/군/구" value={district} onChange={onChangeDistrict} />
+        <Input
+          label="시/도"
+          value={city}
+          onChange={onChangeCity}
+          isValid={!!city}
+        />
+        <Input
+          label="시/군/구"
+          value={district}
+          onChange={onChangeDistrict}
+          isValid={!!district}
+        />
       </div>
       <div className="register-room-location-street-address">
         <Input
           label="도로명주소"
           value={streetAddress}
           onChange={onChangeStreetAddress}
+          useValidation={false}
         />
       </div>
       <div className="register-room-location-postcode">
-        <Input label="우편번호" value={postcode} onChange={onChangePostcode} />
+        <Input
+          label="우편번호"
+          value={postcode}
+          onChange={onChangePostcode}
+          useValidation={false}
+        />
       </div>
 
       <RegisterRoomFooter
+        isValid={isValid}
         prevHref="/room/register/building"
         nextHref="/room/register/geometry"
       />
