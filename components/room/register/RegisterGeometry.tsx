@@ -106,7 +106,7 @@ const RegisterGeometry: React.FC = () => {
 
           dispatch(registerRoomActions.setLatitude(centerLat));
           dispatch(registerRoomActions.setLongitude(centerLng));
-        }, 150)
+        }, 300)
       );
     }
   };
@@ -118,14 +118,14 @@ const RegisterGeometry: React.FC = () => {
   return (
     <Container>
       <h2>핀이 놓인 위치가 정확?</h2>
-      <h3>auc step</h3>
-      <p>핀을 움직여서 조정 가능</p>
+      <h3>3 step</h3>
+      <p>당신의 위치는 여기가 맞나요?</p>
       <div className="register-room-geometry-map-wrapper">
         <div ref={mapRef} id="map" />
       </div>
       <RegisterRoomFooter
         prevHref="/room/register/location"
-        nextHref="/room/register/amentities"
+        nextHref="/room/register/photo"
       />
     </Container>
   );

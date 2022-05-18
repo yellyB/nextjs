@@ -111,7 +111,7 @@ const RegisterLocation: React.FC = () => {
       dispatch(registerRoomActions.setLatitude(coords.latitude));
       dispatch(registerRoomActions.setLongitude(coords.longitude));
 
-      dispatch(registerRoomActions.setCountry(currentLocation.country));
+      // dispatch(registerRoomActions.setCountry(currentLocation.country));
       dispatch(registerRoomActions.setCity(currentLocation.city));
       dispatch(registerRoomActions.setDistrict(currentLocation.district));
       dispatch(
@@ -147,7 +147,7 @@ const RegisterLocation: React.FC = () => {
     <Container>
       <h2>거주하고 있는 위치를 알려주세요.</h2>
       <h3>2 step</h3>
-      <p>정확한 숙소 주소는 게스트가 예약을 완료한 후에만 공개됩니다.</p>
+      <p>정확한 위치 확인을 위해 위치 정보를 불러와주세요.</p>
 
       <div className="register-room-location-button-wrapper">
         <Button
@@ -156,7 +156,7 @@ const RegisterLocation: React.FC = () => {
           icon={<NavigationIcon />}
           onClick={onClickGetCurrentLocation}
         >
-          {loading ? "기다리시게.." : "현재 위치 사용"}
+          {loading ? "기다리시게.." : "위치 불러오기"}
         </Button>
       </div>
       <div className="register-room-location-country-selector-wrapper">
@@ -175,30 +175,34 @@ const RegisterLocation: React.FC = () => {
         <Input
           label="시/도"
           value={city}
-          onChange={onChangeCity}
+          // onChange={onChangeCity}
           isValid={!!city}
+          readOnly
         />
         <Input
           label="시/군/구"
           value={district}
-          onChange={onChangeDistrict}
+          // onChange={onChangeDistrict}
           isValid={!!district}
+          readOnly
         />
       </div>
       <div className="register-room-location-street-address">
         <Input
           label="도로명주소"
           value={streetAddress}
-          onChange={onChangeStreetAddress}
+          // onChange={onChangeStreetAddress}
           useValidation={false}
+          readOnly
         />
       </div>
       <div className="register-room-location-postcode">
         <Input
           label="우편번호"
           value={postcode}
-          onChange={onChangePostcode}
+          // onChange={onChangePostcode}
           useValidation={false}
+          readOnly
         />
       </div>
 
