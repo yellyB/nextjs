@@ -111,7 +111,7 @@ const RegisterPhoto: React.FC = () => {
 
       <RegisterRoomFooter
         prevHref="/room/register/geometry"
-        nextHref="/room/register/description"
+        nextHref="/room/register/title"
       />
     </Container>
   );

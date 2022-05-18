@@ -16,6 +16,7 @@ type RegisterRoomState = {
   longitude: number;
 
   photos: string[];
+  name: string;
 };
 
 const initialState: RegisterRoomState = {
@@ -34,6 +35,7 @@ const initialState: RegisterRoomState = {
   longitude: 0,
 
   photos: [],
+  name: "",
 };
 
 const registerRoom = createSlice({
@@ -84,6 +86,9 @@ const registerRoom = createSlice({
     },
     setPhotos(state, action: PayloadAction<string[]>) {
       state.photos = action.payload;
+    },
+    setName(state, action: PayloadAction<string>) {
+      state.name = action.payload;
     },
   },
 });
