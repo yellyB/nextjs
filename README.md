@@ -54,3 +54,12 @@ pages
 2.5단계 - 구글 map => 발급받은 키로 지도 화면에 보여주고 위치 선택 가능 (위도 경도)
 3단계 - 사진
 4단계 - description
+
+
+
+---
+라이브러리
+lodash
+formidable
+styled-components
+
