@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import RegisterPhoto from "../../../components/room/register/RegisterPhoto";
+import RegisterPhoto from "../../../components/apply/register/RegisterPhoto";
 
 const photo: NextPage = () => {
   return <RegisterPhoto />;

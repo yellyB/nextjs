@@ -30,20 +30,20 @@ const Container = styled.div`
     margin-bottom: 24px;
     color: ${palette.gray_76};
   }
-  .register-room-step-info {
+  .register-step-info {
     font-size: 14px;
     max-width: 400px;
     margin-bottom: 24px;
   }
-  .register-room-location-button-wrapper {
+  .register-location-button-wrapper {
     width: 176px;
     margin-bottom: 6px;
   }
-  .register-room-location-country-selector-wrapper {
+  .register-location-country-selector-wrapper {
     width: 385px;
     margin-bottom: 24px;
   }
-  .register-room-location-city-district {
+  .register-location-city-district {
     max-width: 385px;
     display: flex;
     margin-bottom: 24px;
@@ -51,15 +51,15 @@ const Container = styled.div`
       margin-right: 24px;
     }
   }
-  .register-room-location-street-address {
+  .register-location-street-address {
     max-width: 385px;
     margin-bottom: 24px;
   }
-  .register-room-location-detail-address {
+  .register-location-detail-address {
     max-width: 385px;
     margin-bottom: 24px;
   }
-  .register-room-location-postcode {
+  .register-location-postcode {
     max-width: 385px;
   }
 `;
@@ -149,7 +149,7 @@ const RegisterLocation: React.FC = () => {
       <h3>STEP 2.</h3>
       <h2>서식 중인 위치를 알려주세요.</h2>
 
-      <div className="register-room-location-button-wrapper">
+      <div className="register-location-button-wrapper">
         <Button
           color="dark_cyan"
           colorReverse
@@ -160,7 +160,7 @@ const RegisterLocation: React.FC = () => {
         </Button>
       </div>
       <p>정확한 위치 확인을 위해 위치 정보를 불러와주세요.</p>
-      <div className="register-room-location-country-selector-wrapper">
+      <div className="register-location-country-selector-wrapper">
         <Selector
           type="register"
           options={countryList}
@@ -172,7 +172,7 @@ const RegisterLocation: React.FC = () => {
           isValid={!!country}
         />
       </div>
-      <div className="register-room-location-city-district">
+      <div className="register-location-city-district">
         <Input
           label="시/도"
           value={city}
@@ -188,7 +188,7 @@ const RegisterLocation: React.FC = () => {
           readOnly
         />
       </div>
-      <div className="register-room-location-street-address">
+      <div className="register-location-street-address">
         <Input
           label="도로명주소"
           value={streetAddress}
@@ -197,7 +197,7 @@ const RegisterLocation: React.FC = () => {
           readOnly
         />
       </div>
-      <div className="register-room-location-postcode">
+      <div className="register-location-postcode">
         <Input
           label="우편번호"
           value={postcode}
@@ -209,8 +209,8 @@ const RegisterLocation: React.FC = () => {
 
       <RegisterFooter
         isValid={isValid}
-        prevHref="/room/register/species"
-        nextHref="/room/register/geometry"
+        prevHref="/apply/register/species"
+        nextHref="/apply/register/geometry"
       />
     </Container>
   );

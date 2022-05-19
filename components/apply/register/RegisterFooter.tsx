@@ -18,7 +18,7 @@ const Container = styled.footer`
   z-index: 10;
   border-top: 1px solid ${palette.gray_dd};
 
-  .register-room-footer-back {
+  .register-footer-back {
     display: flex;
     align-items: center;
     color: ${palette.dark_cyan};
@@ -61,7 +61,7 @@ const RegisterFooter: React.FC<IProps> = ({
   return (
     <Container>
       <Link href={prevHref || ""}>
-        <a className="register-room-footer-back">
+        <a className="register-footer-back">
           {/* <BackArrowIcon /> */}
           {"<"} 뒤로
         </a>

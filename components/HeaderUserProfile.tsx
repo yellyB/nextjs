@@ -100,7 +100,7 @@ const HeaderUserProfile: React.FC = () => {
       {isUsermenuOpend && (
         <ul className="header-usermenu">
           <li>manage</li>
-          <Link href="/room/register/species">
+          <Link href="/apply/register/species">
             <a role="presentation" onClick={() => setIsUsermenuOpend(false)}>
               <li>register</li>
             </a>

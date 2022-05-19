@@ -25,7 +25,7 @@ const Container = styled.div`
     margin-bottom: 24px;
     color: ${palette.gray_76};
   }
-  .register-room-geometry-map-wrapper {
+  .register-geometry-map-wrapper {
     width: 487px;
     height: 280px;
     margin-top: 24px;
@@ -71,8 +71,8 @@ const loadMapScript = () => {
 
 const RegisterGeometry: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
-  const latitude = useSelector((state) => state.registerRoom.latitude);
-  const longitude = useSelector((state) => state.registerRoom.longitude);
+  const latitude = useSelector((state) => state.register.latitude);
+  const longitude = useSelector((state) => state.register.longitude);
 
   const dispatch = useDispatch();
 
@@ -125,12 +125,12 @@ const RegisterGeometry: React.FC = () => {
       <h3>STEP 3.</h3>
       <h2>핀이 놓인 위치가 정확한가요?</h2>
       <p>위치가 잘못 표시되었다면 이전 단계로 돌아가 재설정해주세요.</p>
-      <div className="register-room-geometry-map-wrapper">
+      <div className="register-geometry-map-wrapper">
         <div ref={mapRef} id="map" />
       </div>
       <RegisterFooter
-        prevHref="/room/register/location"
-        nextHref="/room/register/photo"
+        prevHref="/apply/register/location"
+        nextHref="/apply/register/photo"
       />
     </Container>
   );

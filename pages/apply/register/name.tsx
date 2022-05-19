@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import RegisterName from "../../../components/room/register/RegisterName";
+import RegisterName from "../../../components/apply/register/RegisterName";
 
 const name: NextPage = () => {
   return <RegisterName />;

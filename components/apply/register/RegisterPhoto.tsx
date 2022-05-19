@@ -32,11 +32,11 @@ const Container = styled.div`
     margin-bottom: 24px;
   }
   .register-step-description {
-    color: ${palette.gray_76};
+    color: ${palette.gray_b0};
     margin-bottom: 24px;
   }
   .register-upload-photo-wrapper {
-    width: 858px;
+    width: 658px;
     height: 433px;
     /* margin: auto; */
     position: relative;
@@ -128,7 +128,7 @@ const RegisterPhoto: React.FC = () => {
       {!isEmpty(photos) && (
         <div className="register-uploaded-wrapper">
           <p className="register-step-description">
-            {lastUploadFileName}파일을 업로드 해주셨네요.
+            {lastUploadFileName} 파일을 업로드 해주셨네요.
             <br />
             하지만 그건 작성자님의 사진이 아닌것 같아서 제가 임의로 사진을
             골라봤습니다.
@@ -141,8 +141,8 @@ const RegisterPhoto: React.FC = () => {
       )}
 
       <RegisterFooter
-        prevHref="/room/register/geometry"
-        nextHref="/room/register/name"
+        prevHref="/apply/register/geometry"
+        nextHref="/apply/register/name"
       />
     </Container>
   );

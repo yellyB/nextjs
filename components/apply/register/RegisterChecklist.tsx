@@ -10,7 +10,7 @@ import RegisterFooter from "./RegisterFooter";
 const Container = styled.div`
   padding: 62px 30px 100px;
   min-height: 100vh;
-  .register-room-checklist-info {
+  .register-checklist-info {
     margin-bottom: 39px;
   }
   ul {
@@ -20,7 +20,7 @@ const Container = styled.div`
 `;
 
 const RegisterChecklist: React.FC = () => {
-  const name = useSelector((state) => state.register.name);
+  const register = useSelector((state) => state.register);
 
   const dispatch = useDispatch();
 
@@ -30,19 +30,12 @@ const RegisterChecklist: React.FC = () => {
 
   return (
     <Container>
-      <h2>이름</h2>
-      <h3>last step</h3>
-      <div className="register-room-title-description-wrapper">
-        <Input
-          label="당신의 이름 혹은 팀 이름은?"
-          value={name}
-          onChange={onChangeName}
-        />
-      </div>
-      <RegisterFooter
-        prevHref="/room/register/photo"
-        nextHref="/room/register/checklist"
-      />
+      <p className="register-checklist-info">
+        등록한 후에 언제든지 수정 가능
+        <ul>
+          <li>숙소 유형</li>
+        </ul>
+      </p>
     </Container>
   );
 };

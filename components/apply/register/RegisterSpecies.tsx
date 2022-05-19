@@ -153,7 +153,7 @@ const RegisterSpecies: React.FC = () => {
       <RegisterFooter
         isValid={isValid}
         prevHref="/"
-        nextHref="/room/register/location"
+        nextHref="/apply/register/location"
       />
     </Container>
   );

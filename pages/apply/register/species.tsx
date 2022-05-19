@@ -1,5 +1,5 @@
 import { NextPage } from "next";
-import RegisterSpecies from "../../../components/room/register/RegisterSpecies";
+import RegisterSpecies from "../../../components/apply/register/RegisterSpecies";
 
 const species: NextPage = () => {
   return <RegisterSpecies />;

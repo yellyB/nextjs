@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -22,7 +22,7 @@ const Container = styled.div`
     color: ${palette.main_color};
     margin-bottom: 36px;
   }
-  .register-room-step-info {
+  .register-step-info {
     font-size: 14px;
     max-width: 400px;
     margin-bottom: 24px;
@@ -38,20 +38,30 @@ const RegisterName: React.FC = () => {
     dispatch(registerActions.setName(event?.target.value));
   };
 
+  const isValid = useMemo(() => {
+    if (!name) {
+      return false;
+    }
+    return true;
+  }, [name]);
+
   return (
     <Container>
       <h3>LAST STEP</h3>
       <h2>팀 이름을 정해주세요.</h2>
-      <div className="register-room-title-description-wrapper">
+      <div className="register-title-description-wrapper">
         <Input
           label="당신의 이름 혹은 팀 이름은?"
           value={name}
           onChange={onChangeName}
+          isValid={name !== ""}
+          errorMessage="please fill input"
         />
       </div>
       <RegisterFooter
-        prevHref="/room/register/photo"
-        nextHref="/room/register/checklist"
+        isValid={isValid}
+        prevHref="/apply/register/photo"
+        nextHref="/apply/register/checklist"
       />
     </Container>
   );
