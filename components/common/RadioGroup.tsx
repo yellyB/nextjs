@@ -9,7 +9,7 @@ const Container = styled.div<{ isValid: boolean; validateMode: boolean }>`
     font-size: 16px;
     font-weight: 600;
     color: ${palette.gray_76};
-    margin-bottom: 32px;
+    margin-bottom: 22px;
   }
   .radio-list-wrapper {
     &:after {
@@ -55,7 +55,7 @@ const Container = styled.div<{ isValid: boolean; validateMode: boolean }>`
           `;
         }
         return css`
-          border-color: ${palette.dark_cyan};
+          border-color: ${palette.main_color};
         `;
       }
       return undefined;
@@ -63,7 +63,7 @@ const Container = styled.div<{ isValid: boolean; validateMode: boolean }>`
   }
 
   input[type="radio"]:checked {
-    background-color: ${palette.dark_cyan};
+    background-color: ${palette.main_color};
     border: 0;
   }
   input[type="radio"]:checked:after {

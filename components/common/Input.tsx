@@ -15,15 +15,15 @@ const Container = styled.div<InputContainerProps>`
     width: 100%;
     height: 46px;
     padding: ${({ iconExist }) => (iconExist ? "0 44px 0 11px" : "0 11px")};
-    /* border: 1px solid ${palette.gray_eb}; */
-    /* border-radius: 4px; */
+    border: 1px solid ${palette.gray_b0};
+    border-radius: 4px;
     font-size: 16px;
     /* outline: none; */
     ::placeholder {
       color: ${palette.gray_76};
     }
     &:focus {
-      /* border-color: ${palette.dark_cyan} !important; */
+      /* border-color: ${palette.main_color} !important; */
     }
   }
   svg {
@@ -36,6 +36,9 @@ const Container = styled.div<InputContainerProps>`
   label {
     span {
       display: block;
+      font-size: 16px;
+      color: ${palette.gray_76};
+      font-weight: 600;
       margin-bottom: 8px;
     }
   }
@@ -63,7 +66,7 @@ const Container = styled.div<InputContainerProps>`
     isValid &&
     css`
       input {
-        border-color: ${palette.dark_cyan};
+        border-color: ${palette.main_color};
       }
     `}
 `;

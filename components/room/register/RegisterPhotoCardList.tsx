@@ -12,23 +12,25 @@ import palette from "../../../styles/palette";
 const Container = styled.ul`
   width: 858px;
   margin: auto;
+
   /** 첫번째 사진 */
-  .register-room-first-photo-wrapper {
+  .register-first-photo-wrapper {
     width: 230px;
     height: 230px;
-    margin: 24px;
+    margin: 0 0 24px 0;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 6px;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* border-radius: 6px; */
+
     overflow: hidden;
-    .register-room-photo-interaction-buttons {
+    .register-photo-interaction-buttons {
       display: flex;
       opacity: 0.6;
     }
     &:hover {
-      .register-room-photo-interaction-buttons {
+      .register-photo-interaction-buttons {
         display: flex;
         opacity: 0.9;
       }
@@ -47,7 +49,7 @@ const Container = styled.ul`
   }
 
   /** 수정,삭제 버튼 */
-  .register-room-photo-interaction-buttons {
+  .register-photo-interaction-buttons {
     display: none;
     position: absolute;
     top: 8px;
@@ -67,25 +69,25 @@ const Container = styled.ul`
     }
   }
 
-  li:nth-child(3n + 1) {
+  li:nth-child(4n + 1) {
     margin-right: 0;
   }
-  .register-room-photo-card {
+  .register-photo-card {
     position: relative;
     display: inline-block;
-    width: calc((60% - 48px) / 3);
+    width: calc((100% - 48px) / 4 - 6px);
     height: 150px;
     border-radius: 6px;
 
     overflow: hidden;
     margin-right: 24px;
     margin-bottom: 24px;
-    .register-room-photo-interaction-buttons {
+    .register-photo-interaction-buttons {
       display: flex;
       opacity: 0.6;
     }
     &:hover {
-      .register-room-photo-interaction-buttons {
+      .register-photo-interaction-buttons {
         display: flex;
         opacity: 0.9;
       }
@@ -99,7 +101,7 @@ const Container = styled.ul`
     }
   }
   /** 사진 추가하기 카드 */
-  .register-room-add-more-photo-card {
+  .register-add-more-photo-card {
     position: relative;
     flex-direction: column;
     justify-content: center;
@@ -181,9 +183,9 @@ const RegisterPhotoCardList: React.FC<IProps> = ({ photos }) => {
       {photos.map((photo, index) => (
         <React.Fragment key={index}>
           {index === 0 && (
-            <li className="register-room-first-photo-wrapper">
+            <li className="register-first-photo-wrapper">
               <img src={"/static/image/file/" + photo} alt="" />
-              <div className="register-room-photo-interaction-buttons">
+              <div className="register-photo-interaction-buttons">
                 <button
                   type="button"
                   onClick={() => {
@@ -204,9 +206,9 @@ const RegisterPhotoCardList: React.FC<IProps> = ({ photos }) => {
             </li>
           )}
           {index !== 0 && (
-            <li className="register-room-photo-card">
+            <li className="register-photo-card">
               <img src={"/static/image/file/" + photo} alt="" />
-              <div className="register-room-photo-interaction-buttons">
+              <div className="register-photo-interaction-buttons">
                 <button
                   type="button"
                   onClick={() => {
@@ -229,13 +231,13 @@ const RegisterPhotoCardList: React.FC<IProps> = ({ photos }) => {
         </React.Fragment>
       ))}
       <li
-        className="register-room-photo-card"
+        className="register-photo-card"
         role="presentation"
         onClick={addPhoto}
       >
-        <div className="register-room-add-more-photo-card">
+        <div className="register-add-more-photo-card">
           <PlusIcon />
-          동료가 있다면 추가
+          동료 추가
         </div>
       </li>
     </Container>

@@ -10,16 +10,17 @@ import RegisterRoomFooter from "./RegisterRoomFooter";
 const Container = styled.div`
   padding: 62px 30px 100px;
   width: 445px;
-  h2 {
-    font-size: 19px;
-    font-weight: 800;
-    margin-bottom: 56px;
-  }
   h3 {
-    font-size: 14px;
+    font-size: 22px;
     font-weight: bold;
-    color: ${palette.gray_76};
+    color: ${palette.main_color};
     margin-bottom: 6px;
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 400;
+    color: ${palette.main_color};
+    margin-bottom: 36px;
   }
   .register-room-step-info {
     font-size: 14px;
@@ -28,7 +29,7 @@ const Container = styled.div`
   }
 `;
 
-const RegisterTitle: React.FC = () => {
+const RegisterName: React.FC = () => {
   const name = useSelector((state) => state.registerRoom.name);
 
   const dispatch = useDispatch();
@@ -39,8 +40,8 @@ const RegisterTitle: React.FC = () => {
 
   return (
     <Container>
-      <h2>이름</h2>
-      <h3>last step</h3>
+      <h3>LAST STEP</h3>
+      <h2>팀 이름을 정해주세요.</h2>
       <div className="register-room-title-description-wrapper">
         <Input
           label="당신의 이름 혹은 팀 이름은?"
@@ -56,4 +57,4 @@ const RegisterTitle: React.FC = () => {
   );
 };
 
-export default RegisterTitle;
+export default RegisterName;

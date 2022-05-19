@@ -11,9 +11,9 @@ const NormalSelectorStyle = css`
     width: 100%;
     height: 100%;
     background-color: white;
-    /* border: 1px solid ${palette.gray_eb}; */
+    border: 1px solid ${palette.gray_eb};
     padding: 0 11px;
-    /* border-radius: 4px; */
+    border-radius: 4px;
     /* outline: none; */
     -webkit-appearance: none;
     background-image: url("/static/svg/common/selector/selector_down_arrow.svg");
@@ -21,7 +21,7 @@ const NormalSelectorStyle = css`
     background-repeat: no-repeat;
     font-size: 16px;
     &:focus {
-      border-color: ${palette.dark_cyan};
+      border-color: ${palette.main_color};
     }
   }
 `;
@@ -41,8 +41,8 @@ const RegisterSelectorStyle = css`
   select {
     width: 100%;
     height: 56px;
-    /* border-radius: 8px; */
-    /* border: 1px solid ${palette.gray_b0}; */
+    border-radius: 8px;
+    border: 1px solid ${palette.gray_b0};
     padding: 0 14px 0 12px;
     /* appearance: none; */
     /* outline: none; */
@@ -73,7 +73,7 @@ const Container = styled.div<SelectorContainerProps>`
           `;
         }
         return css`
-          border-color: ${palette.dark_cyan};
+          border-color: ${palette.main_color};
         `;
       }
       return undefined;

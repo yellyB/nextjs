@@ -9,16 +9,21 @@ import throttle from "lodash/throttle";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
-  h2 {
-    font-size: 19px;
-    font-weight: 800;
-    margin-bottom: 56px;
-  }
   h3 {
-    font-size: 14px;
+    font-size: 22px;
     font-weight: bold;
-    color: ${palette.gray_76};
+    color: ${palette.main_color};
     margin-bottom: 6px;
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 400;
+    color: ${palette.main_color};
+    margin-bottom: 36px;
+  }
+  p {
+    margin-bottom: 24px;
+    color: ${palette.gray_76};
   }
   .register-room-geometry-map-wrapper {
     width: 487px;
@@ -117,9 +122,9 @@ const RegisterGeometry: React.FC = () => {
 
   return (
     <Container>
-      <h2>핀이 놓인 위치가 정확?</h2>
-      <h3>3 step</h3>
-      <p>당신의 위치는 여기가 맞나요?</p>
+      <h3>STEP 3.</h3>
+      <h2>핀이 놓인 위치가 정확한가요?</h2>
+      <p>위치가 잘못 표시되었다면 이전 단계로 돌아가 재설정해주세요.</p>
       <div className="register-room-geometry-map-wrapper">
         <div ref={mapRef} id="map" />
       </div>

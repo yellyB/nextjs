@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { registerRoomActions } from "../../../store/registerRoom";
 import palette from "../../../styles/palette";
 import RegisterRoomFooter from "./RegisterRoomFooter";
-import throttle from "lodash/throttle";
 import Button from "../../common/Button";
 import UploadIcon from "../../../public/static/svg/register/upload.svg";
 import isEmpty from "lodash/isEmpty";
@@ -14,26 +13,32 @@ import RegisterPhotoCardList from "./RegisterPhotoCardList";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
-  h2 {
-    font-size: 19px;
-    font-weight: 800;
-    margin-bottom: 56px;
-  }
   h3 {
-    font-size: 14px;
+    font-size: 22px;
     font-weight: bold;
-    color: ${palette.gray_76};
+    color: ${palette.main_color};
     margin-bottom: 6px;
   }
-  .register-room-step-info {
+  h2 {
+    font-size: 32px;
+    font-weight: 400;
+    color: ${palette.main_color};
+    margin-bottom: 36px;
+  }
+  .register-step-info {
     font-size: 14px;
     max-width: 400px;
+    color: ${palette.gray_76};
     margin-bottom: 24px;
   }
-  .register-room-upload-photo-wrapper {
+  .register-step-description {
+    color: ${palette.gray_76};
+    margin-bottom: 24px;
+  }
+  .register-upload-photo-wrapper {
     width: 858px;
     height: 433px;
-    margin: auto;
+    /* margin: auto; */
     position: relative;
     display: flex;
     justify-content: center;
@@ -52,6 +57,22 @@ const Container = styled.div`
       width: 100%;
       max-height: 100%;
     }
+  }
+  .register-uploaded-wrapper {
+    width: 658px;
+    /* margin: auto; */
+  }
+  .register-uploaded {
+    /* width: 658px; */
+    /* height: 433px; */
+    padding: 10px;
+    /* margin: auto; */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid ${palette.gray_bb};
+    border-radius: 6px;
   }
 `;
 
@@ -87,17 +108,14 @@ const RegisterPhoto: React.FC = () => {
 
   return (
     <Container>
-      <h2>사진 업로드</h2>
-      <h3>4 step</h3>
-      <p className="register-room-step-info">자신의 사진 올리기</p>
-      {isUpload && (
-        <div>
-          {lastUploadFileName}파일을 업로드 해주셨네요. 하지만 그건 작성자님의
-          사진이 아닌것 같아서 제가 임의로 사진을 골라봤습니다.
-        </div>
-      )}
+      <h3>STEP 4.</h3>
+      <h2>지원자님의 사진을 업로드 해주세요.</h2>
+      <p className="register-step-info">
+        여러명이 지원하는 경우 지원자 전부의 사진을 올려주세요.
+      </p>
+
       {isEmpty(photos) && (
-        <div className="register-room-upload-photo-wrapper">
+        <div className="register-upload-photo-wrapper">
           <>
             <input type="file" accept="image/*" onChange={uploadImage} />
             <Button icon={<UploadIcon />} color="bittersweet" width="167px">
@@ -107,11 +125,24 @@ const RegisterPhoto: React.FC = () => {
         </div>
       )}
 
-      {!isEmpty(photos) && <RegisterPhotoCardList photos={photos} />}
+      {!isEmpty(photos) && (
+        <div className="register-uploaded-wrapper">
+          <p className="register-step-description">
+            {lastUploadFileName}파일을 업로드 해주셨네요.
+            <br />
+            하지만 그건 작성자님의 사진이 아닌것 같아서 제가 임의로 사진을
+            골라봤습니다.
+          </p>
+
+          <div className="register-uploaded">
+            <RegisterPhotoCardList photos={photos} />
+          </div>
+        </div>
+      )}
 
       <RegisterRoomFooter
         prevHref="/room/register/geometry"
-        nextHref="/room/register/title"
+        nextHref="/room/register/name"
       />
     </Container>
   );

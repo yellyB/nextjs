@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 type RegisterRoomState = {
-  largeBuildingType: string | null;
-  buildingType: string | null;
-  roomType: string | null;
+  largeSpeciesType: string | null;
+  speciesType: string | null;
+  applyType: string | null;
   isSetUpForGuest: boolean | null;
 
   country: string;
@@ -20,9 +20,9 @@ type RegisterRoomState = {
 };
 
 const initialState: RegisterRoomState = {
-  largeBuildingType: null,
-  buildingType: null,
-  roomType: null,
+  largeSpeciesType: null,
+  speciesType: null,
+  applyType: null,
   isSetUpForGuest: null,
 
   country: "",
@@ -42,22 +42,25 @@ const registerRoom = createSlice({
   name: "registerRoom",
   initialState,
   reducers: {
-    setLargeBuildingType(state, action: PayloadAction<string>) {
+    setLargeSpeciesType(state, action: PayloadAction<string>) {
       if (action.payload === "") {
-        state.largeBuildingType = null;
+        state.largeSpeciesType = null;
       }
-      state.largeBuildingType = action.payload;
+      state.largeSpeciesType = action.payload;
       return state;
     },
-    setBuildingType(state, action: PayloadAction<string>) {
+    setSpeciesType(state, action: PayloadAction<string>) {
       if (action.payload === "") {
-        state.buildingType = null;
+        state.speciesType = null;
       }
-      state.buildingType = action.payload;
+      state.speciesType = action.payload;
       return state;
     },
-    setRoomType(state, action: PayloadAction<"entire" | "private" | "public">) {
-      state.roomType = action.payload;
+    setApplyType(
+      state,
+      action: PayloadAction<"entire" | "private" | "public">
+    ) {
+      state.applyType = action.payload;
       return state;
     },
     setCountry(state, action: PayloadAction<string>) {

@@ -14,16 +14,21 @@ import { getLocationInfoAPI } from "../../../lib/api/map";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
-  h2 {
-    font-size: 19px;
-    font-weight: 800;
-    margin-bottom: 56px;
-  }
   h3 {
-    font-size: 14px;
+    font-size: 22px;
     font-weight: bold;
-    color: ${palette.gray_76};
+    color: ${palette.main_color};
     margin-bottom: 6px;
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 400;
+    color: ${palette.main_color};
+    margin-bottom: 36px;
+  }
+  p {
+    margin-bottom: 24px;
+    color: ${palette.gray_76};
   }
   .register-room-step-info {
     font-size: 14px;
@@ -32,7 +37,7 @@ const Container = styled.div`
   }
   .register-room-location-button-wrapper {
     width: 176px;
-    margin-bottom: 24px;
+    margin-bottom: 6px;
   }
   .register-room-location-country-selector-wrapper {
     width: 385px;
@@ -145,9 +150,8 @@ const RegisterLocation: React.FC = () => {
 
   return (
     <Container>
-      <h2>거주하고 있는 위치를 알려주세요.</h2>
-      <h3>2 step</h3>
-      <p>정확한 위치 확인을 위해 위치 정보를 불러와주세요.</p>
+      <h3>STEP 2.</h3>
+      <h2>서식 중인 위치를 알려주세요.</h2>
 
       <div className="register-room-location-button-wrapper">
         <Button
@@ -156,9 +160,10 @@ const RegisterLocation: React.FC = () => {
           icon={<NavigationIcon />}
           onClick={onClickGetCurrentLocation}
         >
-          {loading ? "기다리시게.." : "위치 불러오기"}
+          {loading ? "Loading.." : "위치 불러오기"}
         </Button>
       </div>
+      <p>정확한 위치 확인을 위해 위치 정보를 불러와주세요.</p>
       <div className="register-room-location-country-selector-wrapper">
         <Selector
           type="register"
@@ -208,7 +213,7 @@ const RegisterLocation: React.FC = () => {
 
       <RegisterRoomFooter
         isValid={isValid}
-        prevHref="/room/register/building"
+        prevHref="/room/register/species"
         nextHref="/room/register/geometry"
       />
     </Container>
