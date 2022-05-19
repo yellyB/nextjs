@@ -2,10 +2,10 @@ import React, { useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { registerRoomActions } from "../../../store/registerRoom";
+import { registerActions } from "../../../store/register";
 import palette from "../../../styles/palette";
 import Button from "../../common/Button";
-import RegisterRoomFooter from "./RegisterRoomFooter";
+import RegisterFooter from "./RegisterFooter";
 import NavigationIcon from "../../../public/static/svg/register/navigation.svg";
 import Selector from "../../common/Selector";
 import { countryList } from "../../../lib/staticData";
@@ -67,39 +67,37 @@ const Container = styled.div`
 const defaultSelector = "나라 선택";
 
 const RegisterLocation: React.FC = () => {
-  const country = useSelector((state) => state.registerRoom.country);
-  const city = useSelector((state) => state.registerRoom.city);
-  const district = useSelector((state) => state.registerRoom.district);
-  const streetAddress = useSelector(
-    (state) => state.registerRoom.streetAddress
-  );
-  const postcode = useSelector((state) => state.registerRoom.postcode);
+  const country = useSelector((state) => state.register.country);
+  const city = useSelector((state) => state.register.city);
+  const district = useSelector((state) => state.register.district);
+  const streetAddress = useSelector((state) => state.register.streetAddress);
+  const postcode = useSelector((state) => state.register.postcode);
 
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
 
   const onChangeCountry = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(registerRoomActions.setCountry(event.target.value));
+    dispatch(registerActions.setCountry(event.target.value));
   };
 
   const onChangeCity = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(registerRoomActions.setCity(event.target.value));
+    dispatch(registerActions.setCity(event.target.value));
   };
 
   const onChangeDistrict = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(registerRoomActions.setDistrict(event.target.value));
+    dispatch(registerActions.setDistrict(event.target.value));
   };
 
   const onChangeStreetAddress = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    dispatch(registerRoomActions.setStreetAddress(event.target.value));
+    dispatch(registerActions.setStreetAddress(event.target.value));
   };
 
   //*우편번호 변경시
   const onChangePostcode = (e: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(registerRoomActions.setPostcode(e.target.value));
+    dispatch(registerActions.setPostcode(e.target.value));
   };
 
   const onSuccessGetLocation = async ({ coords }: any) => {
@@ -113,18 +111,16 @@ const RegisterLocation: React.FC = () => {
       });
       console.log(currentLocation);
 
-      dispatch(registerRoomActions.setLatitude(coords.latitude));
-      dispatch(registerRoomActions.setLongitude(coords.longitude));
+      dispatch(registerActions.setLatitude(coords.latitude));
+      dispatch(registerActions.setLongitude(coords.longitude));
 
-      // dispatch(registerRoomActions.setCountry(currentLocation.country));
-      dispatch(registerRoomActions.setCity(currentLocation.city));
-      dispatch(registerRoomActions.setDistrict(currentLocation.district));
-      dispatch(
-        registerRoomActions.setStreetAddress(currentLocation.streetAddress)
-      );
-      dispatch(registerRoomActions.setPostcode(currentLocation.postcode));
-      dispatch(registerRoomActions.setLatitude(currentLocation.latitude));
-      dispatch(registerRoomActions.setLongitude(currentLocation.longitude));
+      // dispatch(registerActions.setCountry(currentLocation.country));
+      dispatch(registerActions.setCity(currentLocation.city));
+      dispatch(registerActions.setDistrict(currentLocation.district));
+      dispatch(registerActions.setStreetAddress(currentLocation.streetAddress));
+      dispatch(registerActions.setPostcode(currentLocation.postcode));
+      dispatch(registerActions.setLatitude(currentLocation.latitude));
+      dispatch(registerActions.setLongitude(currentLocation.longitude));
     } catch (e) {
       console.log(e);
       alert(e?.message);
@@ -211,7 +207,7 @@ const RegisterLocation: React.FC = () => {
         />
       </div>
 
-      <RegisterRoomFooter
+      <RegisterFooter
         isValid={isValid}
         prevHref="/room/register/species"
         nextHref="/room/register/geometry"

@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { registerRoomActions } from "../../../store/registerRoom";
+import { registerActions } from "../../../store/register";
 import palette from "../../../styles/palette";
-import RegisterRoomFooter from "./RegisterRoomFooter";
+import RegisterFooter from "./RegisterFooter";
 import throttle from "lodash/throttle";
 
 const Container = styled.div`
@@ -109,8 +109,8 @@ const RegisterGeometry: React.FC = () => {
 
           marker.setPosition({ lat: latitude, lng: longitude });
 
-          dispatch(registerRoomActions.setLatitude(centerLat));
-          dispatch(registerRoomActions.setLongitude(centerLng));
+          dispatch(registerActions.setLatitude(centerLat));
+          dispatch(registerActions.setLongitude(centerLng));
         }, 300)
       );
     }
@@ -128,7 +128,7 @@ const RegisterGeometry: React.FC = () => {
       <div className="register-room-geometry-map-wrapper">
         <div ref={mapRef} id="map" />
       </div>
-      <RegisterRoomFooter
+      <RegisterFooter
         prevHref="/room/register/location"
         nextHref="/room/register/photo"
       />

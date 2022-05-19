@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { registerRoomActions } from "../../../store/registerRoom";
+import { registerActions } from "../../../store/register";
 import palette from "../../../styles/palette";
 import Input from "../../common/Input";
-import RegisterRoomFooter from "./RegisterRoomFooter";
+import RegisterFooter from "./RegisterFooter";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -30,12 +30,12 @@ const Container = styled.div`
 `;
 
 const RegisterName: React.FC = () => {
-  const name = useSelector((state) => state.registerRoom.name);
+  const name = useSelector((state) => state.register.name);
 
   const dispatch = useDispatch();
 
   const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(registerRoomActions.setName(event?.target.value));
+    dispatch(registerActions.setName(event?.target.value));
   };
 
   return (
@@ -49,7 +49,7 @@ const RegisterName: React.FC = () => {
           onChange={onChangeName}
         />
       </div>
-      <RegisterRoomFooter
+      <RegisterFooter
         prevHref="/room/register/photo"
         nextHref="/room/register/checklist"
       />

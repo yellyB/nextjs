@@ -3,11 +3,11 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { largeSpeciesTypeList } from "../../../lib/staticData";
-import { registerRoomActions } from "../../../store/registerRoom";
+import { registerActions } from "../../../store/register";
 import palette from "../../../styles/palette";
 import RadioGroup from "../../common/RadioGroup";
 import Selector from "../../common/Selector";
-import RegisterRoomFooter from "./RegisterRoomFooter";
+import RegisterFooter from "./RegisterFooter";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -59,25 +59,25 @@ const applyTypeRadioOptions = [
 
 const RegisterSpecies: React.FC = () => {
   const largeSpeciesType = useSelector(
-    (state) => state.registerRoom.largeSpeciesType
+    (state) => state.register.largeSpeciesType
   );
-  const speciesType = useSelector((state) => state.registerRoom.speciesType);
-  const applyType = useSelector((state) => state.registerRoom.applyType);
+  const speciesType = useSelector((state) => state.register.speciesType);
+  const applyType = useSelector((state) => state.register.applyType);
 
   const dispatch = useDispatch();
 
   const onChangeLargeSpeciesType = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    dispatch(registerRoomActions.setLargeSpeciesType(event.target.value));
+    dispatch(registerActions.setLargeSpeciesType(event.target.value));
   };
 
   const onChangeSpeciesType = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(registerRoomActions.setSpeciesType(event.target.value));
+    dispatch(registerActions.setSpeciesType(event.target.value));
   };
 
   const onChangeApplyType = (value: "entire" | "private" | "public") => {
-    dispatch(registerRoomActions.setApplyType(value));
+    dispatch(registerActions.setApplyType(value));
   };
 
   // 큰 speies type 이 결정되면 그에따른 스텝 2의 옵션들 불러옴
@@ -85,17 +85,17 @@ const RegisterSpecies: React.FC = () => {
     switch (largeSpeciesType) {
       case "인간형": {
         const { humanTypeList } = require("../../../lib/staticData");
-        dispatch(registerRoomActions.setSpeciesType(humanTypeList[0]));
+        dispatch(registerActions.setSpeciesType(humanTypeList[0]));
         return humanTypeList;
       }
       case "자연형": {
         const { natureTypeList } = require("../../../lib/staticData");
-        dispatch(registerRoomActions.setSpeciesType(natureTypeList[0]));
+        dispatch(registerActions.setSpeciesType(natureTypeList[0]));
         return natureTypeList;
       }
       case "무형": {
         const { noneTypeList } = require("../../../lib/staticData");
-        dispatch(registerRoomActions.setSpeciesType(noneTypeList[0]));
+        dispatch(registerActions.setSpeciesType(noneTypeList[0]));
         return noneTypeList;
       }
       default:
@@ -150,7 +150,7 @@ const RegisterSpecies: React.FC = () => {
         </div>
       )}
 
-      <RegisterRoomFooter
+      <RegisterFooter
         isValid={isValid}
         prevHref="/"
         nextHref="/room/register/location"

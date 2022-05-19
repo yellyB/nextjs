@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type RegisterRoomState = {
+type RegisterState = {
   largeSpeciesType: string | null;
   speciesType: string | null;
   applyType: string | null;
@@ -19,7 +19,7 @@ type RegisterRoomState = {
   name: string;
 };
 
-const initialState: RegisterRoomState = {
+const initialState: RegisterState = {
   largeSpeciesType: null,
   speciesType: null,
   applyType: null,
@@ -38,8 +38,8 @@ const initialState: RegisterRoomState = {
   name: "",
 };
 
-const registerRoom = createSlice({
-  name: "registerRoom",
+const register = createSlice({
+  name: "register",
   initialState,
   reducers: {
     setLargeSpeciesType(state, action: PayloadAction<string>) {
@@ -96,6 +96,6 @@ const registerRoom = createSlice({
   },
 });
 
-export const registerRoomActions = { ...registerRoom.actions };
+export const registerActions = { ...register.actions };
 
-export default registerRoom;
+export default register;

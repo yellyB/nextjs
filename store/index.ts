@@ -7,13 +7,13 @@ import {
 import user from "./user";
 import common from "./common";
 import auth from "./auth";
-import registerRoom from "./registerRoom";
+import register from "./register";
 
 const rootReducer = combineReducers({
   user: user.reducer,
   common: common.reducer,
   auth: auth.reducer,
-  registerRoom: registerRoom.reducer,
+  register: register.reducer,
 });
 
 // 스토어의 타입

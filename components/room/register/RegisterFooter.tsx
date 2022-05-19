@@ -1,15 +1,9 @@
 import Link from "next/link";
-import React, { useEffect, useMemo } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import useValidateMode from "../../../hooks/useValidateMode";
-import { largeBuildingTypeList } from "../../../lib/staticData";
-import { registerRoomActions } from "../../../store/registerRoom";
 import palette from "../../../styles/palette";
 import Button from "../../common/Button";
-import RadioGroup from "../../common/RadioGroup";
-import Selector from "../../common/Selector";
 
 const Container = styled.footer`
   position: fixed;
@@ -41,7 +35,7 @@ interface IProps {
   isValid?: boolean;
 }
 
-const RegisterRoomFooter: React.FC<IProps> = ({
+const RegisterFooter: React.FC<IProps> = ({
   prevHref,
   nextHref,
   isValid = true,
@@ -83,4 +77,4 @@ const RegisterRoomFooter: React.FC<IProps> = ({
   );
 };
 
-export default RegisterRoomFooter;
+export default RegisterFooter;

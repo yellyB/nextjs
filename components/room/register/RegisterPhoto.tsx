@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { registerRoomActions } from "../../../store/registerRoom";
+import { registerActions } from "../../../store/register";
 import palette from "../../../styles/palette";
-import RegisterRoomFooter from "./RegisterRoomFooter";
+import RegisterFooter from "./RegisterFooter";
 import Button from "../../common/Button";
 import UploadIcon from "../../../public/static/svg/register/upload.svg";
 import isEmpty from "lodash/isEmpty";
@@ -77,7 +77,7 @@ const Container = styled.div`
 `;
 
 const RegisterPhoto: React.FC = () => {
-  const photos = useSelector((state) => state.registerRoom.photos);
+  const photos = useSelector((state) => state.register.photos);
   const [isUpload, setIsUpload] = useState(false);
   const [lastUploadFileName, setLastUploadFileName] = useState("");
 
@@ -95,10 +95,10 @@ const RegisterPhoto: React.FC = () => {
         setLastUploadFileName(data);
         if (data) {
           const temp = Math.floor(Math.random() * 9) + ".png";
-          dispatch(registerRoomActions.setPhotos([...photos, temp]));
+          dispatch(registerActions.setPhotos([...photos, temp]));
           setIsUpload(true);
           // 이미지를 서버에 저장할때에는 아래 코드로 제대로 저장
-          //   dispatch(registerRoomActions.setPhotos([...photos,data]));
+          //   dispatch(registerActions.setPhotos([...photos,data]));
         }
       } catch (e) {
         console.log(e);
@@ -140,7 +140,7 @@ const RegisterPhoto: React.FC = () => {
         </div>
       )}
 
-      <RegisterRoomFooter
+      <RegisterFooter
         prevHref="/room/register/geometry"
         nextHref="/room/register/name"
       />

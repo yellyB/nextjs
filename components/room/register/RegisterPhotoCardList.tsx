@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { uploadFileAPI } from "../../../lib/api/file";
-import { registerRoomActions } from "../../../store/registerRoom";
+import { registerActions } from "../../../store/register";
 
 import PencilIcon from "../../../public/static/svg/register/photo/pencil.svg";
 import TrashCanIcon from "../../../public/static/svg/register/photo/trash_can.svg";
@@ -143,7 +143,7 @@ const RegisterPhotoCardList: React.FC<IProps> = ({ photos }) => {
         uploadFileAPI(formData)
           .then(({ data }) => {
             const temp = Math.floor(Math.random() * 9) + ".png";
-            dispatch(registerRoomActions.setPhotos([...photos, temp]));
+            dispatch(registerActions.setPhotos([...photos, temp]));
           })
           .catch((e) => console.log(e));
       }
@@ -154,7 +154,7 @@ const RegisterPhotoCardList: React.FC<IProps> = ({ photos }) => {
   const deletePhoto = (index: number) => {
     const newPhotos = [...photos];
     newPhotos.splice(index, 1);
-    dispatch(registerRoomActions.setPhotos(newPhotos));
+    dispatch(registerActions.setPhotos(newPhotos));
   };
 
   const editPhoto = (index: number) => {
@@ -170,7 +170,7 @@ const RegisterPhotoCardList: React.FC<IProps> = ({ photos }) => {
             const newPhotos = [...photos];
             newPhotos[index] = Math.floor(Math.random() * 9) + ".png";
             // newPhotos[index] = data;
-            dispatch(registerRoomActions.setPhotos(newPhotos));
+            dispatch(registerActions.setPhotos(newPhotos));
           })
           .catch((e) => console.log(e.message));
       }

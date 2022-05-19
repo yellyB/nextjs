@@ -2,39 +2,30 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { registerRoomActions } from "../../../store/registerRoom";
+import { registerActions } from "../../../store/register";
 import palette from "../../../styles/palette";
 import Input from "../../common/Input";
-import RegisterRoomFooter from "./RegisterRoomFooter";
+import RegisterFooter from "./RegisterFooter";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
-  width: 445px;
-  h2 {
-    font-size: 19px;
-    font-weight: 800;
-    margin-bottom: 56px;
+  min-height: 100vh;
+  .register-room-checklist-info {
+    margin-bottom: 39px;
   }
-  h3 {
-    font-size: 14px;
-    font-weight: bold;
-    color: ${palette.gray_76};
-    margin-bottom: 6px;
-  }
-  .register-room-step-info {
-    font-size: 14px;
-    max-width: 400px;
-    margin-bottom: 24px;
+  ul {
+    display: inline-flex;
+    flex-direction: column;
   }
 `;
 
-const RegisterRoomChecklist: React.FC = () => {
-  const name = useSelector((state) => state.registerRoom.name);
+const RegisterChecklist: React.FC = () => {
+  const name = useSelector((state) => state.register.name);
 
   const dispatch = useDispatch();
 
   const onChangeName = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(registerRoomActions.setName(event?.target.value));
+    dispatch(registerActions.setName(event?.target.value));
   };
 
   return (
@@ -48,7 +39,7 @@ const RegisterRoomChecklist: React.FC = () => {
           onChange={onChangeName}
         />
       </div>
-      <RegisterRoomFooter
+      <RegisterFooter
         prevHref="/room/register/photo"
         nextHref="/room/register/checklist"
       />
@@ -56,4 +47,4 @@ const RegisterRoomChecklist: React.FC = () => {
   );
 };
 
-export default RegisterRoomChecklist;
+export default RegisterChecklist;

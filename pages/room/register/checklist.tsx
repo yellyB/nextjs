@@ -1,8 +1,8 @@
 import { NextPage } from "next";
-import RegisterRoomChecklist from "../../../components/room/register/RegisterRoomChecklist";
+import RegisterChecklist from "../../../components/room/register/RegisterChecklist";
 
 const checklist: NextPage = () => {
-  return <RegisterRoomChecklist />;
+  return <RegisterChecklist />;
 };
 
 export default checklist;
