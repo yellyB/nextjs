@@ -1,7 +1,9 @@
-import Link from "next/link";
 import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import styled from "styled-components";
-import useValidateMode from "../../../hooks/useValidateMode";
+import { registerAPI } from "../../../lib/api/apply";
 import palette from "../../../styles/palette";
 import Button from "../../common/Button";
 
@@ -29,8 +31,24 @@ const Container = styled.footer`
   }
 `;
 
-const RegisterSubmitFooter: React.FC = ({}) => {
-  const onClickRegister = async () => {};
+const RegisterSubmitFooter: React.FC = () => {
+  const userId = useSelector((state) => state.user.id);
+  const register = useSelector((state) => state.register);
+
+  const router = useRouter();
+
+  const onClickRegister = async () => {
+    const registerBody = {
+      ...register,
+      userId: userId,
+    };
+    try {
+      await registerAPI(registerBody);
+      router.push("/");
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <Container>

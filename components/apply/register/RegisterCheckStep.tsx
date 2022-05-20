@@ -36,14 +36,13 @@ const Container = styled.li`
 `;
 
 interface IProps {
-  disabled: boolean;
+  disabled?: boolean;
   inProgress: boolean;
   step: string;
   href: string;
 }
 
 // inProgress 있으면 계속 진행
-// disabled면 막힘
 const RegisterCheckStep: React.FC<IProps> = ({
   disabled,
   inProgress,
@@ -82,7 +81,6 @@ const RegisterCheckStep: React.FC<IProps> = ({
       <Link href={href}>
         <a>
           <CheckMarkIcon />
-          markerIcon
           <span>{step}</span>
         </a>
       </Link>

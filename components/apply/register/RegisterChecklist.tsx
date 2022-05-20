@@ -71,16 +71,16 @@ const RegisterChecklist: React.FC = () => {
   // 따라서 순서대로 확인하여 리턴
   const stepInProgress = useMemo(() => {
     if (!isSpeciesActived) {
-      return "species";
+      return 1;
     }
     if (!isLocationActived) {
-      return "location";
+      return 2;
     }
     if (!isPhotoActived) {
-      return "photo";
+      return 3;
     }
     if (!isNameActived) {
-      return "name";
+      return 4;
     }
   }, []);
 
@@ -91,26 +91,26 @@ const RegisterChecklist: React.FC = () => {
         <RegisterCheckStep
           step="종족"
           href="/apply/register/species"
-          disabled={!isSpeciesActived}
-          inProgress={stepInProgress === "species"}
+          disabled={Number(stepInProgress) <= 1}
+          inProgress={stepInProgress === 1}
         />
         <RegisterCheckStep
           step="위치"
           href="/apply/register/location"
-          disabled={!isLocationActived}
-          inProgress={stepInProgress === "location"}
+          disabled={Number(stepInProgress) <= 2}
+          inProgress={stepInProgress === 2}
         />
         <RegisterCheckStep
           step="사진"
           href="/apply/register/photo"
-          disabled={!isPhotoActived}
-          inProgress={stepInProgress === "photo"}
+          disabled={Number(stepInProgress) <= 3}
+          inProgress={stepInProgress === 3}
         />
         <RegisterCheckStep
           step="이름"
           href="/apply/register/name"
-          disabled={!isNameActived}
-          inProgress={stepInProgress === "name"}
+          disabled={Number(stepInProgress) <= 4}
+          inProgress={stepInProgress === 4}
         />
       </ul>
 
