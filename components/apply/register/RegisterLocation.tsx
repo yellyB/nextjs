@@ -134,6 +134,7 @@ const RegisterLocation: React.FC = () => {
     navigator.geolocation.getCurrentPosition(onSuccessGetLocation, (e) => {
       console.log(e);
       alert(e?.message);
+      setLoading(false);
     });
   };
 
@@ -164,12 +165,12 @@ const RegisterLocation: React.FC = () => {
         <Selector
           type="register"
           options={countryList}
-          useValidation={false}
           defaultValue={defaultSelector}
           disabledOptions={[defaultSelector]}
           value={country || undefined}
           onChange={onChangeCountry}
           isValid={!!country}
+          errorMessage="please select one"
         />
       </div>
       <div className="register-location-city-district">
@@ -179,6 +180,7 @@ const RegisterLocation: React.FC = () => {
           // onChange={onChangeCity}
           isValid={!!city}
           readOnly
+          errorMessage="please fill input"
         />
         <Input
           label="시/군/구"
@@ -186,6 +188,7 @@ const RegisterLocation: React.FC = () => {
           // onChange={onChangeDistrict}
           isValid={!!district}
           readOnly
+          errorMessage="please fill input"
         />
       </div>
       <div className="register-location-street-address">

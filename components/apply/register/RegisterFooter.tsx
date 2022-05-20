@@ -68,9 +68,7 @@ const RegisterFooter: React.FC<IProps> = ({
       </Link>
       <Link href={nextHref || ""}>
         <a>
-          <Button color="dark_cyan" onClick={onClickNext}>
-            계속
-          </Button>
+          <Button onClick={onClickNext}>계속</Button>
         </a>
       </Link>
     </Container>

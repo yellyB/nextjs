@@ -4,7 +4,6 @@ type RegisterState = {
   largeSpeciesType: string | null;
   speciesType: string | null;
   applyType: string | null;
-  isSetUpForGuest: boolean | null;
 
   country: string;
   city: string;
@@ -23,7 +22,6 @@ const initialState: RegisterState = {
   largeSpeciesType: null,
   speciesType: null,
   applyType: null,
-  isSetUpForGuest: null,
 
   country: "",
   city: "",
