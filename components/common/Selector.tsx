@@ -98,8 +98,9 @@ const Container = styled.div<SelectorContainerProps>`
       height: 20px;
     }
     p {
+      font-weight: 600;
       font-size: 12px;
-      color: ${palette.davidson_orange};
+      color: ${palette.tawny};
     }
   }
 `;
@@ -148,7 +149,7 @@ const Selector: React.FC<IProps> = ({
       </label>
       {useValidation && validateMode && !isValid && (
         <div className="selector-warning">
-          <WarningIcon />
+          {/* <WarningIcon /> */}
           <p>{errorMessage}</p>
         </div>
       )}
