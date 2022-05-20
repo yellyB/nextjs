@@ -5,15 +5,19 @@ import AuthModal from "./auth/AuthModal";
 import useModal from "../hooks/useModal";
 import { authActions } from "../store/auth";
 import { useDispatch } from "react-redux";
+import Button from "./common/Button";
 
 const Container = styled.div`
+  margin: 8px 8px 0 0;
   .header-signup-button {
     height: 42px;
     margin-right: 8px;
     padding: 0 16px;
-    /* border: 0; */
-    /* border-radius: 21px; */
-    /* background-color: white; */
+    color: ${palette.black};
+    border: 1px solid ${palette.gray_c4};
+    border-radius: 21px;
+    background-color: white;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.18);
     cursor: pointer;
     /* outline: none; */
     &:hover {
@@ -23,10 +27,11 @@ const Container = styled.div`
   .header-signin-button {
     height: 42px;
     padding: 0 16px;
-    /* border: 0; */
-    /* box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.18); */
-    /* border-radius: 21px; */
-    /* background-color: white; */
+    color: ${palette.black};
+    border: 1px solid ${palette.gray_c4};
+    border-radius: 21px;
+    background-color: white;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.18);
     cursor: pointer;
     /* outline: none; */
     &:hover {
@@ -51,13 +56,13 @@ const HeaderAuths: React.FC = () => {
         className="header-signup-button"
         onClick={() => openModalOnClick("signup")}
       >
-        Sign Up
+        SIGN UP
       </button>
       <button
         className="header-signin-button"
         onClick={() => openModalOnClick("signin")}
       >
-        Sign In
+        SIGN IN
       </button>
       <ModalPortal>
         <AuthModal closeModal={closeModal} />

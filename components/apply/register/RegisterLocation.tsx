@@ -165,43 +165,43 @@ const RegisterLocation: React.FC = () => {
         <Selector
           type="register"
           options={countryList}
+          useValidation={false}
           defaultValue={defaultSelector}
           disabledOptions={[defaultSelector]}
           value={country || undefined}
           onChange={onChangeCountry}
-          isValid={!!country}
-          errorMessage="please select one"
         />
       </div>
       <div className="register-location-city-district">
         <Input
+          readOnly
           label="시/도"
           value={city}
           // onChange={onChangeCity}
-          isValid={!!city}
-          readOnly
-          errorMessage="please fill input"
+          // isValid={!!city}
+          // errorMessage="please fill input"
         />
         <Input
+          readOnly
           label="시/군/구"
           value={district}
           // onChange={onChangeDistrict}
-          isValid={!!district}
-          readOnly
-          errorMessage="please fill input"
+          // isValid={!!district}
+          // errorMessage="please fill input"
         />
       </div>
       <div className="register-location-street-address">
         <Input
+          readOnly
           label="도로명주소"
           value={streetAddress}
           // onChange={onChangeStreetAddress}
           useValidation={false}
-          readOnly
         />
       </div>
       <div className="register-location-postcode">
         <Input
+          readOnly
           label="우편번호"
           value={postcode}
           // onChange={onChangePostcode}
@@ -211,7 +211,7 @@ const RegisterLocation: React.FC = () => {
       </div>
 
       <RegisterFooter
-        isValid={isValid}
+        // isValid={isValid}
         prevHref="/apply/register/species"
         nextHref="/apply/register/geometry"
       />

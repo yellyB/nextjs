@@ -4,6 +4,8 @@ import { useSelector } from "../../store";
 import palette from "../../styles/palette";
 import WarningIcon from "../../public/static/svg/common/warning.svg";
 
+// normal style: 일반 셀렉터
+// register sytle: 등록 시 사용할 셀렉터(label이 있음)
 const NormalSelectorStyle = css`
   width: 100%;
   height: 46px;
@@ -11,7 +13,7 @@ const NormalSelectorStyle = css`
     width: 100%;
     height: 100%;
     background-color: white;
-    border: 1px solid ${palette.gray_eb};
+    border: 1px solid ${palette.gray_b0};
     padding: 0 11px;
     border-radius: 4px;
     /* outline: none; */
@@ -40,8 +42,8 @@ const RegisterSelectorStyle = css`
   }
   select {
     width: 100%;
-    height: 56px;
-    border-radius: 8px;
+    height: 46px;
+    border-radius: 4px;
     border: 1px solid ${palette.gray_b0};
     padding: 0 14px 0 12px;
     /* appearance: none; */
@@ -63,6 +65,7 @@ const Container = styled.div<SelectorContainerProps>`
   ${({ type }) => type === "normal" && NormalSelectorStyle};
   ${({ type }) => type === "register" && RegisterSelectorStyle};
 
+  // 유효성 검사에 따른 스타일 변경
   select {
     ${({ validateMode, isValid }) => {
       if (validateMode) {

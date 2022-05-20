@@ -25,11 +25,20 @@ const Container = styled.form`
   padding: 32px;
   background-color: white;
   z-index: 11;
-  .modal-close-x-icon {
-    cursor: pointer;
-    display: block;
-    margin: 0 0 40px auto;
+  .modal-title {
+    display: flex;
+    h2 {
+      font-size: 28pt;
+      /* color: ${palette.charcoal}; */
+      margin-left: 8px;
+    }
+    .modal-close-x-icon {
+      cursor: pointer;
+      /* display: block; */
+      margin: 0 0 40px auto;
+    }
   }
+
   .input-wrapper {
     position: relative;
     margin-bottom: 16px;
@@ -65,13 +74,14 @@ const Container = styled.form`
     color: ${palette.charcoal};
   }
   .signup-modal-submit-button-wrapper {
-    margin-bottom: 16px;
+    /* margin-bottom: 16px; */
     padding-bottom: 16px;
     /* border-bottom: 1px solid ${palette.gray_eb}; */
   }
   .signup-modal-set-signin {
-    /* color: ${palette.dark_cyan}; */
-    /* margin-left: 8px; */
+    font-weight: 600;
+    color: ${palette.bittersweet};
+    margin-left: 8px;
     cursor: pointer;
   }
 `;
@@ -199,8 +209,10 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
 
   return (
     <Container onSubmit={onSubmitSignUp}>
-      Sign Up
-      <CloseXIcon className="modal-close-x-icon" onClick={closeModal} />
+      <div className="modal-title">
+        <h2>SIGN UP</h2>
+        <CloseXIcon className="modal-close-x-icon" onClick={closeModal} />
+      </div>
       <div className="input-wrapper">
         <Input
           placeholder="email"

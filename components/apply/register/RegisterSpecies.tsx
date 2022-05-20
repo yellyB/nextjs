@@ -116,7 +116,7 @@ const RegisterSpecies: React.FC = () => {
       <h2>당신은 무슨 종족입니까?</h2>
       <div className="register-species-selector-wrapper">
         <Selector
-          isValid={!!largeSpeciesType}
+          // isValid={!!largeSpeciesType}
           type="register"
           value={largeSpeciesType || undefined}
           defaultValue={init}
@@ -124,24 +124,25 @@ const RegisterSpecies: React.FC = () => {
           label="종족 대분류 선택"
           options={largeSpeciesTypeList}
           onChange={onChangeLargeSpeciesType}
+          useValidation={false}
         />
       </div>
       <div className="register-species-selector-wrapper">
         <Selector
-          isValid={!!speciesType}
+          // isValid={!!speciesType}
           type="register"
           value={speciesType || undefined}
-          //   defaultValue={init}
           disabled={!speciesType}
           label="종족 선택"
           options={detailSpeciesOptions}
           onChange={onChangeSpeciesType}
+          useValidation={false}
         />
       </div>
       {speciesType && (
         <div className="register-apply-type-radio">
           <RadioGroup
-            isValid={!!applyType}
+            // isValid={!!applyType}
             label="함께 지원하는 동족 여부"
             value={applyType}
             options={applyTypeRadioOptions}
@@ -151,7 +152,7 @@ const RegisterSpecies: React.FC = () => {
       )}
 
       <RegisterFooter
-        isValid={isValid}
+        // isValid={isValid}
         prevHref="/"
         nextHref="/apply/register/location"
       />
