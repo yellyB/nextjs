@@ -40,7 +40,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       /*
     // 4 토큰
-    const token = jwt.sign(String(newUser.userNo), process.env.JWT_SECRET!);
+    const token = jwt.sign(String(newUser.userId), process.env.JWT_SECRET!);
     // 토큰을 쿠키에 3일간 저장
     // httponly - api통신에서만 쿠키 값 불러오기. 이외의 접근 불가능
     res.setHeader(

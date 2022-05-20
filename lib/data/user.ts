@@ -23,9 +23,9 @@ const write = async (users: StoredUserType[]) => {
 };
 
 // 로그인 - 유저 찾기 & 토큰 검사하여 찾기
-const find = ({ email, userNo }: { email?: string; userNo?: number }) => {
+const find = ({ email, userId }: { email?: string; userId?: number }) => {
   const users = getList();
-  return users.find((user) => user.email === email || user.userNo === userNo);
+  return users.find((user) => user.email === email || user.userId === userId);
 };
 
 export default { getList, exist, write, find };

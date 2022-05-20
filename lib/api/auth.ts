@@ -2,7 +2,7 @@ import axios from "axios";
 import { UserType } from "../../types/user";
 
 interface SignUpAPIBody {
-  //   userNo: number;
+  //   userId: number;
   email: string;
   password: string;
   birthday: string;

@@ -32,7 +32,7 @@ const Container = styled.footer`
 `;
 
 const RegisterSubmitFooter: React.FC = () => {
-  const userId = useSelector((state) => state.user.userNo);
+  const userId = useSelector((state) => state.user.userId);
   const register = useSelector((state) => state.register);
 
   const router = useRouter();

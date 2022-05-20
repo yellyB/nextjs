@@ -3,7 +3,7 @@ import { UserType } from "../types/user";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: UserState = {
-  userNo: 0,
+  userId: 0,
   email: "",
   birthday: "",
   isLogged: false,

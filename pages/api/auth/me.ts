@@ -13,7 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return res.send("access_token not found");
       }
       const userId = jwt.verify(accessToken, process.env.JWT_SECRET!);
-      const user = Data.user.find({ userNo: Number(userId) });
+      const user = Data.user.find({ userId: Number(userId) });
       if (!user) {
         res.statusCode = 404;
         return res.send("user not found.");

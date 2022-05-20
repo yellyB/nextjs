@@ -1,69 +1,69 @@
 [
   {
-    "userNo": 1,
+    "userId": 1,
     "email": "jilltheripper@hanmail.net",
     "password": "$2a$08$DdZjofDY5jv9A9ikTcwBQeM9Hl2NjbUgven6Snb7C5m.H4C7W8ClK",
     "birthday": "Fri, 31 Dec 2021 15:00:00 GMT",
     "profileImage": "/static/image/user/default_profile.png"
   },
   {
-    "userNo": 2,
+    "userId": 2,
     "email": "jilltheripper@hanmail.net",
     "password": "$2a$08$j2Qnbx/.3EvmVLGUcNmAJ.bSTaDUxfNk1o5hP6MwY9jediIQmucT.",
     "birthday": "Fri, 31 Dec 2021 15:00:00 GMT",
     "profileImage": "/static/image/user/default_profile.png"
   },
   {
-    "userNo": 3,
+    "userId": 3,
     "email": "jilltheripper@hanmail.net",
     "password": "$2a$08$2Aws58ns6TYJMsduMryD0uRaxOnW4eZsy2HkBfhx/0cmXJlGivMqC",
     "birthday": "Fri, 31 Dec 2021 15:00:00 GMT",
     "profileImage": "/static/image/user/default_profile.png"
   },
   {
-    "userNo": 4,
+    "userId": 4,
     "email": "kk3p1q1@gmail.com",
     "password": "$2a$08$NXoWOYQRZK8BFJTFg9is/ecAdpcokkEw4oSGzqKbjLamo/7ulmTVC",
     "birthday": "Thu, 31 Dec 2020 15:00:00 GMT",
     "profileImage": "/static/image/user/default_profile.png"
   },
   {
-    "userNo": 5,
+    "userId": 5,
     "email": "jilltheripper@hanmail.net",
     "password": "$2a$08$GPD.aGRT3druzwLJkWwlIu0Zh9c1BjGxGzVsrbZvhiNnjTkwsZnDu",
     "birthday": "Thu, 31 Dec 2020 15:00:00 GMT",
     "profileImage": "/static/image/user/default_profile.png"
   },
   {
-    "userNo": 6,
+    "userId": 6,
     "email": "jilltheripper@hanmail.net",
     "password": "$2a$08$uIvVvqd8QGrrm7egYYW/2OamJtF0ghbt1OqQMCUjFQ5ivLAjwPl.y",
     "birthday": "Fri, 31 Dec 2021 15:00:00 GMT",
     "profileImage": "/static/image/user/default_profile.png"
   },
   {
-    "userNo": 7,
+    "userId": 7,
     "email": "fjilltheripper@hanmail.net",
     "password": "$2a$08$o5/s7LNVusKMKvqlaOGKQeFmZYUyXyxeflOjxXcNC3WlnuSEfmqMi",
     "birthday": "Fri, 31 Dec 2021 15:00:00 GMT",
     "profileImage": "/static/image/user/default_profile.png"
   },
   {
-    "userNo": 8,
+    "userId": 8,
     "email": "jilltheripper@hanmail.net",
     "password": "$2a$08$mqXX2wII/SP8G5U4wvkM5OvlNfRQxZoZ9Pmuz3BkM5tamSkv6mApO",
     "birthday": "Fri, 31 Dec 2021 15:00:00 GMT",
     "profileImage": "/static/image/user/default_profile.png"
   },
   {
-    "userNo": 9,
+    "userId": 9,
     "email": "jilltheripper@hanmail.net",
     "password": "$2a$08$L.7nIWb.uUV4h5TzZ/MDQ.323c75nTlBfbq2sxgxCi3W/Taj46f9S",
     "birthday": "Fri, 31 Dec 2021 15:00:00 GMT",
     "profileImage": "/static/image/user/default_profile.png"
   },
   {
-    "userNo": 10,
+    "userId": 10,
     "email": "jilltheripper@hanmail.net",
     "password": "$2a$08$m5xmfBsuMRK.Sb3PoP6UkeZR8Hz5T.JRkGD2JOiR11y7OcPg7lQYa",
     "birthday": "Sat, 14 Oct 2006 00:00:00 GMT",

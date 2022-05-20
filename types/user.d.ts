@@ -1,5 +1,5 @@
 export type StoredUserType = {
-  userNo: number;
+  userId: number;
   email: string;
   password: string;
   birthday: string;
@@ -7,7 +7,7 @@ export type StoredUserType = {
 };
 
 export type UserType = {
-  userNo: number;
+  userId: number;
   email: string;
   birthday: string;
   profileImage: string;
