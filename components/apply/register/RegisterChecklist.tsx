@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { registerActions } from "../../../store/register";
 import RegisterCheckStep from "./RegisterCheckStep";
+import RegisterFooter from "./RegisterFooter";
+import RegisterSubmitFooter from "./RegisterSubmitFooter";
 
 const Container = styled.div`
   padding: 62px 30px 100px;
@@ -111,6 +113,16 @@ const RegisterChecklist: React.FC = () => {
           inProgress={stepInProgress === "name"}
         />
       </ul>
+
+      {/* 마지막 단계인 name이 등록되었다면 최종으로 등록 */}
+      {isNameActived ? (
+        <RegisterSubmitFooter />
+      ) : (
+        <RegisterFooter
+          prevHref="/apply/register/name"
+          nextHref={`/apply/register/${stepInProgress}`}
+        />
+      )}
     </Container>
   );
 };

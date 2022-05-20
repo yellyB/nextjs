@@ -3,6 +3,7 @@ import styled from "styled-components";
 import palette from "../../../styles/palette";
 import Button from "../../common/Button";
 import Link from "next/link";
+import CheckMarkIcon from "../../../public/static/svg/register/check_mark.svg";
 
 const Container = styled.li`
   display: flex;
@@ -80,7 +81,7 @@ const RegisterCheckStep: React.FC<IProps> = ({
     <Container>
       <Link href={href}>
         <a>
-          {/* <CheckMarkIcon /> */}
+          <CheckMarkIcon />
           markerIcon
           <span>{step}</span>
         </a>
