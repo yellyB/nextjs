@@ -206,7 +206,6 @@ const RegisterLocation: React.FC = () => {
           value={postcode}
           // onChange={onChangePostcode}
           useValidation={false}
-          readOnly
         />
       </div>
 

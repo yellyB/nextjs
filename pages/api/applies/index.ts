@@ -104,13 +104,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         !city ||
         !district ||
         !streetAddress ||
-        !detailAddress ||
         !postcode ||
         !latitude ||
         !longitude ||
         !photos ||
         !name ||
-        !userId
+        userId === undefined
       ) {
         res.statusCode = 400;
         res.send("입력되지 않은 항목이 있습니다.");

@@ -32,7 +32,7 @@ const Container = styled.footer`
 `;
 
 const RegisterSubmitFooter: React.FC = () => {
-  const userId = useSelector((state) => state.user.id);
+  const userId = useSelector((state) => state.user.userNo);
   const register = useSelector((state) => state.register);
 
   const router = useRouter();
@@ -44,9 +44,11 @@ const RegisterSubmitFooter: React.FC = () => {
     };
     try {
       await registerAPI(registerBody);
+      alert("등록하였습니다.");
       router.push("/");
     } catch (e) {
       console.log(e);
+      alert(e.response.data);
     }
   };
 
