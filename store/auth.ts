@@ -1,5 +1,3 @@
-import { UserState } from "../types/reduxState";
-import { UserType } from "../types/user";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 //  로그인모달은 1: 헤더에서 로그인 / 2: 회원가입에서 로그인 두가지 경로로 열 수 있다.

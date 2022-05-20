@@ -1,14 +1,6 @@
-import { UserType } from "./user";
-
-export type UserState = UserType & {
-  isLogged: boolean;
-};
-
-export type CommonState = {
-  validateMode: boolean;
-};
-
-export type RegisterState = {
+// 등록한 지원자 정보
+export type StoredAppliedType = {
+  id: number;
   largeSpeciesType: string | null;
   speciesType: string | null;
   applyType: string | null;
@@ -24,4 +16,8 @@ export type RegisterState = {
 
   photos: string[];
   name: string;
+
+  createdAt: Date;
+  updatedAt: Date;
+  userId: number;
 };

@@ -1,22 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-type RegisterState = {
-  largeSpeciesType: string | null;
-  speciesType: string | null;
-  applyType: string | null;
-
-  country: string;
-  city: string;
-  district: string;
-  streetAddress: string;
-  detailAddress: string;
-  postcode: string;
-  latitude: number;
-  longitude: number;
-
-  photos: string[];
-  name: string;
-};
+import { RegisterState } from "../types/reduxState";
 
 const initialState: RegisterState = {
   largeSpeciesType: null,
