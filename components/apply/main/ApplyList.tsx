@@ -7,6 +7,7 @@ const Container = styled.ul`
   display: flex;
   flex-wrap: wrap;
   padding-top: 30px;
+  margin-left: 16px;
   width: 100%;
 `;
 

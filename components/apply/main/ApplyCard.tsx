@@ -7,7 +7,7 @@ import { useSelector } from "../../../store";
 
 const Container = styled.li`
   width: calc((100% - 48px) / 3);
-  &:nth-child(4n) {
+  &:nth-child(3n) {
     margin-right: 0;
   }
   margin-right: 16px;
@@ -16,10 +16,10 @@ const Container = styled.li`
 
   @media (min-width: 840px) {
     width: calc((100% - 64px) / 4);
-    &:nth-child(4n) {
+    &:nth-child(3n) {
       margin-right: 16px;
     }
-    &:nth-child(5n) {
+    &:nth-child(4n) {
       margin-right: 0;
     }
   }
