@@ -33,7 +33,11 @@ const Container = styled.footer`
   }
 `;
 
-const RegisterSubmitFooter: React.FC = () => {
+interface IProps {
+  disabled?: boolean;
+}
+
+const RegisterSubmitFooter: React.FC<IProps> = ({ disabled }) => {
   const userId = useSelector((state) => state.user.userId);
   const register = useSelector((state) => state.register);
 
@@ -64,7 +68,12 @@ const RegisterSubmitFooter: React.FC = () => {
           {"<"} 뒤로
         </a>
       </Link>
-      <Button onClick={onClickRegister} color="bittersweet" width="102px">
+      <Button
+        onClick={onClickRegister}
+        color="bittersweet"
+        width="102px"
+        disabled={disabled}
+      >
         등록하기
       </Button>
     </Container>

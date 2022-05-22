@@ -59,8 +59,8 @@ const RegisterCheckStep: React.FC<IProps> = ({
         </Link>
         <Link href={href}>
           <a className="register-check-step-continue-button">
-            <Button size="small" width="58px">
-              계속
+            <Button size="small" width="98px">
+              계속 작성
             </Button>
           </a>
         </Link>

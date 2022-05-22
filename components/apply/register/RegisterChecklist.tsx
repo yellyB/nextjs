@@ -27,7 +27,9 @@ const Container = styled.div`
     color: ${palette.main_color};
     margin-bottom: 36px;
   }
-
+  p {
+    color: ${palette.gray_76};
+  }
   .register-checklist-info {
     margin-bottom: 39px;
   }
@@ -137,14 +139,8 @@ const RegisterChecklist: React.FC = () => {
         </ul>
       </div>
       {/* 마지막 단계인 name이 등록되었다면 최종으로 등록 */}
-      {isNameActived ? (
-        <RegisterSubmitFooter />
-      ) : (
-        <RegisterFooter
-          prevHref="/apply/register/name"
-          nextHref={`/apply/register/${stepInProgress}`}
-        />
-      )}
+
+      <RegisterSubmitFooter disabled={Number(stepInProgress) < 4} />
     </Container>
   );
 };

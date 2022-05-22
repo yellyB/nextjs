@@ -25,4 +25,5 @@ export default {
   dark_cyan: "#008489",
   green: "#008A05",
   main_color: "#008489",
+  sub_main_color: "#0084894d",
 };

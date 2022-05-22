@@ -2,7 +2,17 @@ import React from "react";
 import styled, { css } from "styled-components";
 import palette from "../../styles/palette";
 
-const getButtonColor = (color: string, colorReverse: boolean) => {
+const getButtonColor = (
+  color: string,
+  colorReverse: boolean,
+  disabled: boolean
+) => {
+  if (disabled) {
+    return css`
+      background-color: ${palette.gray_c4};
+      color: white;
+    `;
+  }
   if (colorReverse) {
     switch (color) {
       case "dark_cyan":
@@ -64,6 +74,7 @@ interface StyledButtonProps {
   width: string | undefined;
   colorReverse: boolean;
   size: "small" | "default";
+  disabled: boolean;
 }
 
 const Container = styled.button<StyledButtonProps>`
@@ -80,7 +91,8 @@ const Container = styled.button<StyledButtonProps>`
   outline: none;
   cursor: pointer;
   width: ${(props) => props.width};
-  ${(props) => getButtonColor(props.color || "", props.colorReverse)};
+  ${(props) =>
+    getButtonColor(props.color || "", props.colorReverse, props.disabled)};
   ${(props) => getButtonSize(props.size)}
 
   svg {
@@ -98,6 +110,7 @@ interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   colorReverse?: boolean;
   icon?: JSX.Element;
   size?: "small" | "default";
+  disabled?: boolean;
 }
 
 const Button: React.FC<IProps> = ({
@@ -107,6 +120,7 @@ const Button: React.FC<IProps> = ({
   colorReverse = false,
   icon,
   size = "default",
+  disabled = false,
   ...props
 }) => {
   return (
@@ -116,6 +130,7 @@ const Button: React.FC<IProps> = ({
       width={width}
       colorReverse={colorReverse}
       size={size}
+      disabled={disabled}
     >
       {icon}
       {children}
