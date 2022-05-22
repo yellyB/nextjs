@@ -3,6 +3,7 @@ import jwt from "jsonwebtoken";
 import Data from "../../../lib/data";
 import { StoredUserType } from "../../../types/user";
 
+//  로그인시 저장한 쿠키 정보 가져오기
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
     try {

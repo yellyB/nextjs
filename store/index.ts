@@ -8,12 +8,14 @@ import user from "./user";
 import common from "./common";
 import auth from "./auth";
 import register from "./register";
+import apply from "./apply";
 
 const rootReducer = combineReducers({
   user: user.reducer,
   common: common.reducer,
   auth: auth.reducer,
   register: register.reducer,
+  apply: apply.reducer,
 });
 
 // 스토어의 타입

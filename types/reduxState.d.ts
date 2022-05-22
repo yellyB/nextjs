@@ -25,3 +25,8 @@ export type RegisterState = {
   photos: string[];
   name: string;
 };
+
+export type ApplyState = {
+  applies: StoredAppliedType[];
+  detail: StoredAppliedType | null; //  TODD: 상세 페이지
+};

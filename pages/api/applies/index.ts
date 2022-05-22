@@ -5,62 +5,14 @@ import Data from "../../../lib/data";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "GET") {
-    const {
-      checkInDate,
-      checkOutDate,
-      adultCount,
-      childrenCount,
-      latitude,
-      longitude,
-      limit,
-      page = "1",
-    } = req.query;
+    const { limit, page = "1" } = req.query;
+    // limit: 한 페이지의 개수
+    // page: 해당 데이터가 몇 번째 페이지인지
     try {
       const applies = await Data.apply.getList();
-      //* 위치로 필터링 하기
-      const filteredapplies = applies.filter((apply) => {
-        if (latitude && latitude !== "0" && longitude && longitude !== "0") {
-          if (
-            !(
-              Number(latitude) - 0.5 < apply.latitude &&
-              apply.latitude < Number(latitude) + 0.05 &&
-              Number(longitude) - 0.5 < apply.longitude &&
-              apply.longitude < Number(longitude) + 0.05
-            )
-          ) {
-            return false;
-          }
-        }
-        if (checkInDate) {
-          if (
-            new Date(checkInDate as string) < new Date(apply.startDate) ||
-            new Date(checkInDate as string) > new Date(apply.endDate)
-          ) {
-            return false;
-          }
-        }
-        if (checkOutDate) {
-          if (
-            new Date(checkOutDate as string) < new Date(apply.startDate) ||
-            new Date(checkOutDate as string) > new Date(apply.endDate)
-          ) {
-            return false;
-          }
-        }
-
-        if (
-          apply.maximumGuestCount <
-          Number(adultCount as string) +
-            (Number(childrenCount as string) * 0.5 || 0)
-        ) {
-          return false;
-        }
-
-        return true;
-      });
 
       //* 갯수 자르기
-      const limitedapplies = filteredapplies.splice(
+      const limitedapplies = applies.splice(
         0 + (Number(page) - 1) * Number(limit),
         Number(limit)
       );
