@@ -6,18 +6,19 @@ import Link from "next/link";
 import { useSelector } from "../store";
 import HeaderUserProfile from "./HeaderUserProfile";
 import HeaderAuths from "./HeaderAuths";
+import palette from "../styles/palette";
 
 const Container = styled.div`
   position: sticky; // header를 맨 위 고정
   /* top: 0; */
   width: 100%;
-  /* height: 80px; */
+  height: 70px;
   display: flex;
   justify-content: space-between; // 양쪽 끝으로 정렬
-  /* align-items: center; */
-  padding: 0 10px;
-  /* background-color: white; */
-  /* box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 12px; */
+  align-items: center;
+  padding: 0 30px;
+  background-color: ${palette.sub_main_color};
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 12px;
   /* z-index: 10; */
 
   /* 왼쪽 로고 */

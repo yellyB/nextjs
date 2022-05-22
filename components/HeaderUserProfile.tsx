@@ -41,7 +41,7 @@ const Container = styled.div`
     top: 52px;
     width: 240px;
     padding: 8px 0;
-    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
     background-color: white;
     li {
@@ -52,7 +52,7 @@ const Container = styled.div`
       padding: 0 16px;
       cursor: pointer;
       &:hover {
-        background-color: ${palette.gray_f7};
+        background-color: ${palette.gray_eb};
       }
     }
     .header-usermenu-divider {

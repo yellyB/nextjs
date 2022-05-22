@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 import Button from "./common/Button";
 
 const Container = styled.div`
-  margin: 8px 8px 0 0;
   .header-signup-button {
     height: 42px;
     margin-right: 8px;
@@ -22,6 +21,7 @@ const Container = styled.div`
     /* outline: none; */
     &:hover {
       background-color: ${palette.gray_f7};
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
     }
   }
   .header-signin-button {
@@ -35,7 +35,8 @@ const Container = styled.div`
     cursor: pointer;
     /* outline: none; */
     &:hover {
-      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.12);
+      background-color: ${palette.gray_f7};
+      box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.3);
     }
   }
 `;
