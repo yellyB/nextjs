@@ -6,15 +6,16 @@ import palette from "../../../styles/palette";
 import { useSelector } from "../../../store";
 
 const Container = styled.li`
-  width: calc((100% - 48px) / 4);
+  width: calc((100% - 48px) / 3);
   &:nth-child(4n) {
     margin-right: 0;
   }
   margin-right: 16px;
   margin-bottom: 32px;
+  cursor: pointer;
 
-  @media (min-width: 1440px) {
-    width: calc((100% - 64px) / 5);
+  @media (min-width: 840px) {
+    width: calc((100% - 64px) / 4);
     &:nth-child(4n) {
       margin-right: 16px;
     }
@@ -86,20 +87,20 @@ const ApplyCard: React.FC<IProps> = ({ room }) => {
 
   return (
     <Container>
-      {/* <Link href={`/apply/${room.id}`}> */}
-      {/* <a> */}
-      <div className="apply-card-photo-wrapper">
-        <img src={"/static/image/file/" + room.photos[0]} alt="" />
-      </div>
-      <div className="apply-card-info-texts">
-        <p className="apply-card-title">{room.name}</p>
-        <p className="apply-card-apply-info">
-          {room.speciesType} / {translatedRoomType}
-          <br /> {room.city} {room.district}
-        </p>
-        <div className="apply-card-text-divider" />
-      </div>
-      {/* </a> */}
+      {/* <Link href={`/apply/${apply.id}`}> */}
+      <a>
+        <div className="apply-card-photo-wrapper">
+          <img src={"/static/image/file/" + room.photos[0]} alt="" />
+        </div>
+        <div className="apply-card-info-texts">
+          <p className="apply-card-title">{room.name}</p>
+          <p className="apply-card-apply-info">
+            {room.speciesType} / {translatedRoomType}
+            <br /> {room.city} {room.district}
+          </p>
+          <div className="apply-card-text-divider" />
+        </div>
+      </a>
       {/* </Link> */}
     </Container>
   );

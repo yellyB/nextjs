@@ -6,7 +6,7 @@ import ApplyCard from "./ApplyCard";
 const Container = styled.ul`
   display: flex;
   flex-wrap: wrap;
-  padding-top: 50px;
+  padding-top: 30px;
   width: 100%;
 `;
 

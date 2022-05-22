@@ -9,8 +9,9 @@ import { StoredAppliedType } from "../../../types/apply";
 import ApplyList from "./ApplyList";
 
 const Container = styled.div`
-  padding: 50px 80px;
-  margin: auto;
+  padding: 50px 80px 0 80px;
+  display: flex;
+  justify-content: center;
 
   .apply-list-info {
     margin-bottom: 8px;
@@ -45,10 +46,12 @@ const ApplyMain: React.FC = () => {
 
   return (
     <Container>
-      <h1 className="apply-list-title">지원 크리쳐</h1>
-      <p className="apply-list-info">{applies.length}개의 데이터</p>
-      <div className="apply-list-wrapper">
-        <ApplyList />
+      <div>
+        <h1 className="apply-list-title">지원한 크리쳐</h1>
+        <p className="apply-list-info">{applies.length}개의 데이터</p>
+        <div className="apply-list-wrapper">
+          <ApplyList />
+        </div>
       </div>
     </Container>
   );
