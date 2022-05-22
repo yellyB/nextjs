@@ -1,10 +1,13 @@
 ## next.js 공부용 프로젝트
-(개발 중)
+개발 기간: 4.28 ~ 5. 23
 <br/><br/>
 
 
 ## 폴더구조
 components  
+ &nbsp;ㄴapply  
+ &nbsp;&nbsp;&nbsp;ㄴmain  
+ &nbsp;&nbsp;&nbsp;ㄴregister  
  &nbsp;ㄴauth  
  &nbsp;ㄴcommon  
 data  
@@ -14,11 +17,17 @@ lib
  &nbsp;ㄴdata  
 pages  
  &nbsp;ㄴapi  
-  &nbsp;&nbsp;ㄴauth  
+  &nbsp;&nbsp;&nbsp;ㄴapplies    
+  &nbsp;&nbsp;&nbsp;ㄴauth  
+  &nbsp;&nbsp;&nbsp;ㄴfiles    
+  &nbsp;&nbsp;&nbsp;ㄴmaps    
+ &nbsp;ㄴapply  
+  &nbsp;&nbsp;&nbsp;ㄴregister   
 public  
  &nbsp;ㄴstatic  
-  &nbsp;&nbsp;ㄴimage  
-  &nbsp;&nbsp;ㄴsvg  
+  &nbsp;&nbsp;&nbsp;ㄴimage  
+  &nbsp;&nbsp;&nbsp;ㄴsvg  
+store  
 styles  
 types  
   
@@ -59,7 +68,11 @@ pages
 
 ---
 라이브러리
-lodash
+jsonwebtoken
+axios
+bcryptjs
 formidable
+lodash
 styled-components
+googlemaps
 
