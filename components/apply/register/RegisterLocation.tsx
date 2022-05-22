@@ -157,6 +157,7 @@ const RegisterLocation: React.FC = () => {
             colorReverse
             icon={<NavigationIcon />}
             onClick={onClickGetCurrentLocation}
+            width="180px"
           >
             {loading ? "Loading.." : "위치 불러오기"}
           </Button>

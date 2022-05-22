@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import LogoIcon from "../public/static/svg/logo/logo.svg";
-import LogoTextIcon from "../public/static/svg/logo/logo_text.svg";
+import LogoIcon from "../public/static/svg/logo/castle1.svg";
+import LogoTextIcon from "../public/static/svg/logo/realLogo_text.svg";
 import Link from "next/link";
 import { useSelector } from "../store";
 import HeaderUserProfile from "./HeaderUserProfile";
@@ -26,12 +26,12 @@ const Container = styled.div`
     /* display: flex; */
     /* align-items: center; */
     .header-logo {
-      /* margin-right: 6px; */
+      margin-right: 6px;
       width: 60px;
       height: 60px;
     }
     .header-logo-text {
-      width: 60px;
+      width: 100px;
       height: 60px;
     }
   }

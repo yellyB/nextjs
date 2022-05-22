@@ -97,7 +97,7 @@ const Container = styled.button<StyledButtonProps>`
 
   svg {
     margin-right: 6px;
-    width: 18px;
+    width: 24px;
   }
 `;
 
