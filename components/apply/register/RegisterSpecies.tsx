@@ -10,13 +10,16 @@ import Selector from "../../common/Selector";
 import RegisterFooter from "./RegisterFooter";
 
 const Container = styled.div`
-  padding: 62px 30px 100px;
+  margin-bottom: 100px;
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
 
   h3 {
     font-size: 22px;
     font-weight: bold;
     color: ${palette.main_color};
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   h2 {
     font-size: 32px;
@@ -27,11 +30,12 @@ const Container = styled.div`
 
   .register-species-selector-wrapper {
     width: 320px;
-    margin-bottom: 32px;
+    margin-bottom: 26px;
   }
 
   .register-apply-type-radio {
     max-width: 485px;
+    padding-top: 8px;
     margin-bottom: 50px;
   }
 `;
@@ -112,45 +116,46 @@ const RegisterSpecies: React.FC = () => {
 
   return (
     <Container>
-      <h3>STEP 1.</h3>
-      <h2>당신은 무슨 종족입니까?</h2>
-      <div className="register-species-selector-wrapper">
-        <Selector
-          // isValid={!!largeSpeciesType}
-          type="register"
-          value={largeSpeciesType || undefined}
-          defaultValue={init}
-          disabledOptions={disabledLargeBuildingTypeOptions}
-          label="종족 대분류 선택"
-          options={largeSpeciesTypeList}
-          onChange={onChangeLargeSpeciesType}
-          useValidation={false}
-        />
-      </div>
-      <div className="register-species-selector-wrapper">
-        <Selector
-          // isValid={!!speciesType}
-          type="register"
-          value={speciesType || undefined}
-          disabled={!speciesType}
-          label="종족 선택"
-          options={detailSpeciesOptions}
-          onChange={onChangeSpeciesType}
-          useValidation={false}
-        />
-      </div>
-      {speciesType && (
-        <div className="register-apply-type-radio">
-          <RadioGroup
-            // isValid={!!applyType}
-            label="함께 지원하는 동족 여부"
-            value={applyType}
-            options={applyTypeRadioOptions}
-            onChange={onChangeApplyType}
+      <div>
+        <h3>STEP 1.</h3>
+        <h2>당신은 무슨 종족입니까?</h2>
+        <div className="register-species-selector-wrapper">
+          <Selector
+            // isValid={!!largeSpeciesType}
+            type="register"
+            value={largeSpeciesType || undefined}
+            defaultValue={init}
+            disabledOptions={disabledLargeBuildingTypeOptions}
+            label="종족 대분류 선택"
+            options={largeSpeciesTypeList}
+            onChange={onChangeLargeSpeciesType}
+            useValidation={false}
           />
         </div>
-      )}
-
+        <div className="register-species-selector-wrapper">
+          <Selector
+            // isValid={!!speciesType}
+            type="register"
+            value={speciesType || undefined}
+            disabled={!speciesType}
+            label="종족 선택"
+            options={detailSpeciesOptions}
+            onChange={onChangeSpeciesType}
+            useValidation={false}
+          />
+        </div>
+        {speciesType && (
+          <div className="register-apply-type-radio">
+            <RadioGroup
+              // isValid={!!applyType}
+              label="함께 지원하는 동족 여부"
+              value={applyType}
+              options={applyTypeRadioOptions}
+              onChange={onChangeApplyType}
+            />
+          </div>
+        )}
+      </div>
       <RegisterFooter
         // isValid={isValid}
         prevHref="/"

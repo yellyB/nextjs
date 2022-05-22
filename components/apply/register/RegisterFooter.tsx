@@ -11,7 +11,8 @@ const Container = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 548px;
+  width: 70%;
+  min-width: 548px;
   height: 82px;
   padding: 14px 30px 20px;
   background-color: white;
@@ -67,7 +68,7 @@ const RegisterFooter: React.FC<IProps> = ({
         </a>
       </Link>
       <Link href={nextHref || ""}>
-        <a>
+        <a className="register-footer-continue">
           <Button onClick={onClickNext}>계속</Button>
         </a>
       </Link>

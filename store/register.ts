@@ -23,6 +23,23 @@ const register = createSlice({
   name: "register",
   initialState,
   reducers: {
+    setInit() {
+      return {
+        largeSpeciesType: null,
+        speciesType: null,
+        applyType: null,
+        country: "",
+        city: "",
+        district: "",
+        streetAddress: "",
+        detailAddress: "",
+        postcode: "",
+        latitude: 0,
+        longitude: 0,
+        photos: [],
+        name: "",
+      };
+    },
     setLargeSpeciesType(state, action: PayloadAction<string>) {
       if (action.payload === "") {
         state.largeSpeciesType = null;

@@ -8,12 +8,16 @@ import RegisterFooter from "./RegisterFooter";
 import throttle from "lodash/throttle";
 
 const Container = styled.div`
-  padding: 62px 30px 100px;
+  margin-bottom: 100px;
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+
   h3 {
     font-size: 22px;
     font-weight: bold;
     color: ${palette.main_color};
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   h2 {
     font-size: 32px;
@@ -22,13 +26,12 @@ const Container = styled.div`
     margin-bottom: 36px;
   }
   p {
-    margin-bottom: 24px;
     color: ${palette.gray_76};
   }
   .register-geometry-map-wrapper {
     width: 487px;
     height: 280px;
-    margin-top: 24px;
+    margin-top: 14px;
     > div {
       width: 100%;
       height: 100%;
@@ -122,11 +125,13 @@ const RegisterGeometry: React.FC = () => {
 
   return (
     <Container>
-      <h3>STEP 3.</h3>
-      <h2>핀이 놓인 위치가 정확한가요?</h2>
-      <p>위치가 잘못 표시되었다면 이전 단계로 돌아가 재설정해주세요.</p>
-      <div className="register-geometry-map-wrapper">
-        <div ref={mapRef} id="map" />
+      <div>
+        <h3>STEP 3.</h3>
+        <h2>핀이 놓인 위치가 정확한가요?</h2>
+        <p>위치가 잘못 표시되었다면 이전 단계로 돌아가 재설정해주세요.</p>
+        <div className="register-geometry-map-wrapper">
+          <div ref={mapRef} id="map" />
+        </div>
       </div>
       <RegisterFooter
         prevHref="/apply/register/location"

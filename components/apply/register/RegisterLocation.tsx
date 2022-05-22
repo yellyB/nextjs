@@ -13,12 +13,16 @@ import Input from "../../common/Input";
 import { getLocationInfoAPI } from "../../../lib/api/map";
 
 const Container = styled.div`
-  padding: 62px 30px 100px;
+  margin-bottom: 100px;
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+
   h3 {
     font-size: 22px;
     font-weight: bold;
     color: ${palette.main_color};
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   h2 {
     font-size: 32px;
@@ -52,10 +56,6 @@ const Container = styled.div`
     }
   }
   .register-location-street-address {
-    max-width: 385px;
-    margin-bottom: 24px;
-  }
-  .register-location-detail-address {
     max-width: 385px;
     margin-bottom: 24px;
   }
@@ -147,68 +147,69 @@ const RegisterLocation: React.FC = () => {
 
   return (
     <Container>
-      <h3>STEP 2.</h3>
-      <h2>서식 중인 위치를 알려주세요.</h2>
+      <div>
+        <h3>STEP 2.</h3>
+        <h2>서식 중인 위치를 알려주세요.</h2>
 
-      <div className="register-location-button-wrapper">
-        <Button
-          color="dark_cyan"
-          colorReverse
-          icon={<NavigationIcon />}
-          onClick={onClickGetCurrentLocation}
-        >
-          {loading ? "Loading.." : "위치 불러오기"}
-        </Button>
+        <div className="register-location-button-wrapper">
+          <Button
+            color="dark_cyan"
+            colorReverse
+            icon={<NavigationIcon />}
+            onClick={onClickGetCurrentLocation}
+          >
+            {loading ? "Loading.." : "위치 불러오기"}
+          </Button>
+        </div>
+        <p>정확한 위치 확인을 위해 위치 정보를 불러와주세요.</p>
+        <div className="register-location-country-selector-wrapper">
+          <Selector
+            type="register"
+            options={countryList}
+            useValidation={false}
+            defaultValue={defaultSelector}
+            disabledOptions={[defaultSelector]}
+            value={country || undefined}
+            onChange={onChangeCountry}
+          />
+        </div>
+        <div className="register-location-city-district">
+          <Input
+            readOnly
+            label="시/도"
+            value={city}
+            // onChange={onChangeCity}
+            // isValid={!!city}
+            // errorMessage="please fill input"
+          />
+          <Input
+            readOnly
+            label="시/군/구"
+            value={district}
+            // onChange={onChangeDistrict}
+            // isValid={!!district}
+            // errorMessage="please fill input"
+          />
+        </div>
+        <div className="register-location-street-address">
+          <Input
+            readOnly
+            label="도로명주소"
+            value={streetAddress}
+            // onChange={onChangeStreetAddress}
+            useValidation={false}
+          />
+        </div>
+        <div className="register-location-postcode">
+          <Input
+            readOnly
+            label="우편번호"
+            value={postcode}
+            // onChange={onChangePostcode}
+            useValidation={false}
+          />
+        </div>
       </div>
-      <p>정확한 위치 확인을 위해 위치 정보를 불러와주세요.</p>
-      <div className="register-location-country-selector-wrapper">
-        <Selector
-          type="register"
-          options={countryList}
-          useValidation={false}
-          defaultValue={defaultSelector}
-          disabledOptions={[defaultSelector]}
-          value={country || undefined}
-          onChange={onChangeCountry}
-        />
-      </div>
-      <div className="register-location-city-district">
-        <Input
-          readOnly
-          label="시/도"
-          value={city}
-          // onChange={onChangeCity}
-          // isValid={!!city}
-          // errorMessage="please fill input"
-        />
-        <Input
-          readOnly
-          label="시/군/구"
-          value={district}
-          // onChange={onChangeDistrict}
-          // isValid={!!district}
-          // errorMessage="please fill input"
-        />
-      </div>
-      <div className="register-location-street-address">
-        <Input
-          readOnly
-          label="도로명주소"
-          value={streetAddress}
-          // onChange={onChangeStreetAddress}
-          useValidation={false}
-        />
-      </div>
-      <div className="register-location-postcode">
-        <Input
-          readOnly
-          label="우편번호"
-          value={postcode}
-          // onChange={onChangePostcode}
-          useValidation={false}
-        />
-      </div>
-
       <RegisterFooter
         // isValid={isValid}
         prevHref="/apply/register/species"

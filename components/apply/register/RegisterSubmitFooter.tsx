@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import { registerAPI } from "../../../lib/api/apply";
 import palette from "../../../styles/palette";
 import Button from "../../common/Button";
+import { registerActions } from "../../../store/register";
 
 const Container = styled.footer`
   position: fixed;
@@ -13,7 +14,8 @@ const Container = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 548px;
+  width: 70%;
+  min-width: 548px;
   height: 82px;
   padding: 14px 30px 20px;
   background-color: white;
@@ -35,6 +37,7 @@ const RegisterSubmitFooter: React.FC = () => {
   const userId = useSelector((state) => state.user.userId);
   const register = useSelector((state) => state.register);
 
+  const dispatch = useDispatch();
   const router = useRouter();
 
   const onClickRegister = async () => {
@@ -45,6 +48,7 @@ const RegisterSubmitFooter: React.FC = () => {
     try {
       await registerAPI(registerBody);
       alert("등록하였습니다.");
+      dispatch(registerActions.setInit());
       router.push("/");
     } catch (e) {
       console.log(e);

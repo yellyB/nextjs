@@ -4,13 +4,30 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { registerActions } from "../../../store/register";
+import palette from "../../../styles/palette";
 import RegisterCheckStep from "./RegisterCheckStep";
 import RegisterFooter from "./RegisterFooter";
 import RegisterSubmitFooter from "./RegisterSubmitFooter";
 
 const Container = styled.div`
-  padding: 62px 30px 100px;
-  min-height: 100vh;
+  margin-bottom: 100px;
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+
+  h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: ${palette.main_color};
+    margin-bottom: 8px;
+  }
+  h2 {
+    font-size: 32px;
+    font-weight: 400;
+    color: ${palette.main_color};
+    margin-bottom: 36px;
+  }
+
   .register-checklist-info {
     margin-bottom: 39px;
   }
@@ -86,34 +103,39 @@ const RegisterChecklist: React.FC = () => {
 
   return (
     <Container>
-      <p className="register-checklist-info">등록한 후에 언제든지 수정 가능</p>
-      <ul>
-        <RegisterCheckStep
-          step="종족"
-          href="/apply/register/species"
-          disabled={Number(stepInProgress) <= 1}
-          inProgress={stepInProgress === 1}
-        />
-        <RegisterCheckStep
-          step="위치"
-          href="/apply/register/location"
-          disabled={Number(stepInProgress) <= 2}
-          inProgress={stepInProgress === 2}
-        />
-        <RegisterCheckStep
-          step="사진"
-          href="/apply/register/photo"
-          disabled={Number(stepInProgress) <= 3}
-          inProgress={stepInProgress === 3}
-        />
-        <RegisterCheckStep
-          step="이름"
-          href="/apply/register/name"
-          disabled={Number(stepInProgress) <= 4}
-          inProgress={stepInProgress === 4}
-        />
-      </ul>
-
+      <div>
+        <h3>CHECK</h3>
+        <h2>작성 내용 최종 체크</h2>
+        <p className="register-checklist-info">
+          작성하지 않은 단계가 있다면 마저 작성해주세요.
+        </p>
+        <ul>
+          <RegisterCheckStep
+            step="종족"
+            href="/apply/register/species"
+            disabled={Number(stepInProgress) <= 1}
+            inProgress={stepInProgress === 1}
+          />
+          <RegisterCheckStep
+            step="위치"
+            href="/apply/register/location"
+            disabled={Number(stepInProgress) <= 2}
+            inProgress={stepInProgress === 2}
+          />
+          <RegisterCheckStep
+            step="사진"
+            href="/apply/register/photo"
+            disabled={Number(stepInProgress) <= 3}
+            inProgress={stepInProgress === 3}
+          />
+          <RegisterCheckStep
+            step="이름"
+            href="/apply/register/name"
+            disabled={Number(stepInProgress) <= 4}
+            inProgress={stepInProgress === 4}
+          />
+        </ul>
+      </div>
       {/* 마지막 단계인 name이 등록되었다면 최종으로 등록 */}
       {isNameActived ? (
         <RegisterSubmitFooter />

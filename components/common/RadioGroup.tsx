@@ -9,7 +9,7 @@ const Container = styled.div<{ isValid: boolean; validateMode: boolean }>`
     font-size: 16px;
     font-weight: 600;
     color: ${palette.gray_76};
-    margin-bottom: 22px;
+    margin-bottom: 16px;
   }
   .radio-list-wrapper {
     &:after {
@@ -85,6 +85,7 @@ const Container = styled.div<{ isValid: boolean; validateMode: boolean }>`
     display: block;
     margin-top: 5px;
     margin-left: 28px;
+    font-size: 10pt;
     color: ${palette.gray_76};
   }
 

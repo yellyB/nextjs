@@ -8,13 +8,16 @@ import Input from "../../common/Input";
 import RegisterFooter from "./RegisterFooter";
 
 const Container = styled.div`
-  padding: 62px 30px 100px;
-  width: 445px;
+  margin-bottom: 100px;
+  padding-top: 50px;
+  display: flex;
+  justify-content: center;
+
   h3 {
     font-size: 22px;
     font-weight: bold;
     color: ${palette.main_color};
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
   h2 {
     font-size: 32px;
@@ -47,16 +50,18 @@ const RegisterName: React.FC = () => {
 
   return (
     <Container>
-      <h3>LAST STEP</h3>
-      <h2>팀 이름을 정해주세요.</h2>
-      <div className="register-title-description-wrapper">
-        <Input
-          label="당신의 이름 혹은 팀 이름은?"
-          value={name}
-          onChange={onChangeName}
-          isValid={name !== ""}
-          errorMessage="please fill input"
-        />
+      <div>
+        <h3>LAST STEP</h3>
+        <h2>팀 이름을 정해주세요.</h2>
+        <div className="register-title-description-wrapper">
+          <Input
+            label="당신의 이름 혹은 팀 이름은?"
+            value={name}
+            onChange={onChangeName}
+            isValid={name !== ""}
+            errorMessage="please fill input"
+          />
+        </div>
       </div>
       <RegisterFooter
         isValid={isValid}
