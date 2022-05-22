@@ -19,7 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       //* host 정보 넣기
       const appliesWithHost = await Promise.all(
         limitedapplies.map(async (apply) => {
-          const host = await Data.user.find({ id: apply.hostId });
+          const host = await Data.user.find({ userId: apply.userId });
           return { ...apply, host };
         })
       );

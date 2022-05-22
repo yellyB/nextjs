@@ -46,7 +46,7 @@ const applyTypeRadioOptions = [
     description: "종족 전체가 지원합니다.",
   },
   {
-    label: "개인",
+    label: "혼자",
     value: "private",
     description: "작성자 혼자 지원합니다.",
   },

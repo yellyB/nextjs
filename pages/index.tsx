@@ -1,13 +1,9 @@
 import { NextPage } from "next";
 import styled from "styled-components";
-
-const Container = styled.div`
-  font-size: 21px;
-  color: gray;
-`;
+import ApplyMain from "../components/apply/main/ApplyMain";
 
 const index: React.FC = () => {
-  return <Container>hello world</Container>;
+  return <ApplyMain />;
 };
 
 export default index;
