@@ -10,6 +10,7 @@ import UploadIcon from "../../../public/static/svg/register/upload.svg";
 import isEmpty from "lodash/isEmpty";
 import { uploadFileAPI } from "../../../lib/api/file";
 import RegisterPhotoCardList from "./RegisterPhotoCardList";
+import { RootState } from "../../../store";
 
 const Container = styled.div`
   margin-bottom: 100px;
@@ -81,7 +82,7 @@ const Container = styled.div`
 `;
 
 const RegisterPhoto: React.FC = () => {
-  const photos = useSelector((state) => state.register.photos);
+  const photos = useSelector((state: RootState) => state.register.photos);
   const [isUpload, setIsUpload] = useState(false);
   const [lastUploadFileName, setLastUploadFileName] = useState("");
 

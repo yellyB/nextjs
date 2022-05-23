@@ -7,6 +7,7 @@ import { registerAPI } from "../../../lib/api/apply";
 import palette from "../../../styles/palette";
 import Button from "../../common/Button";
 import { registerActions } from "../../../store/register";
+import { RootState } from "../../../store";
 
 const Container = styled.footer`
   position: fixed;
@@ -38,8 +39,8 @@ interface IProps {
 }
 
 const RegisterSubmitFooter: React.FC<IProps> = ({ disabled }) => {
-  const userId = useSelector((state) => state.user.userId);
-  const register = useSelector((state) => state.register);
+  const userId = useSelector((state: RootState) => state.user.userId);
+  const register = useSelector((state: RootState) => state.register);
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -56,7 +57,7 @@ const RegisterSubmitFooter: React.FC<IProps> = ({ disabled }) => {
       router.push("/");
     } catch (e) {
       console.log(e);
-      alert(e.response.data);
+      // alert(e.response.data);
     }
   };
 

@@ -11,6 +11,7 @@ import Selector from "../../common/Selector";
 import { countryList } from "../../../lib/staticData";
 import Input from "../../common/Input";
 import { getLocationInfoAPI } from "../../../lib/api/map";
+import { RootState } from "../../../store";
 
 const Container = styled.div`
   margin-bottom: 100px;
@@ -67,11 +68,13 @@ const Container = styled.div`
 const defaultSelector = "나라 선택";
 
 const RegisterLocation: React.FC = () => {
-  const country = useSelector((state) => state.register.country);
-  const city = useSelector((state) => state.register.city);
-  const district = useSelector((state) => state.register.district);
-  const streetAddress = useSelector((state) => state.register.streetAddress);
-  const postcode = useSelector((state) => state.register.postcode);
+  const country = useSelector((state: RootState) => state.register.country);
+  const city = useSelector((state: RootState) => state.register.city);
+  const district = useSelector((state: RootState) => state.register.district);
+  const streetAddress = useSelector(
+    (state: RootState) => state.register.streetAddress
+  );
+  const postcode = useSelector((state: RootState) => state.register.postcode);
 
   const dispatch = useDispatch();
 
@@ -123,7 +126,7 @@ const RegisterLocation: React.FC = () => {
       dispatch(registerActions.setLongitude(currentLocation.longitude));
     } catch (e) {
       console.log(e);
-      alert(e?.message);
+      // alert(e?.message);
     }
     setLoading(false);
   };

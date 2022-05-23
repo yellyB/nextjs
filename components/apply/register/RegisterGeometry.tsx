@@ -6,6 +6,7 @@ import { registerActions } from "../../../store/register";
 import palette from "../../../styles/palette";
 import RegisterFooter from "./RegisterFooter";
 import throttle from "lodash/throttle";
+import { RootState } from "../../../store";
 
 const Container = styled.div`
   margin-bottom: 100px;
@@ -74,8 +75,8 @@ const loadMapScript = () => {
 
 const RegisterGeometry: React.FC = () => {
   const mapRef = useRef<HTMLDivElement>(null);
-  const latitude = useSelector((state) => state.register.latitude);
-  const longitude = useSelector((state) => state.register.longitude);
+  const latitude = useSelector((state: RootState) => state.register.latitude);
+  const longitude = useSelector((state: RootState) => state.register.longitude);
 
   const dispatch = useDispatch();
 

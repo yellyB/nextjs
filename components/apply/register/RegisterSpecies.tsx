@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { largeSpeciesTypeList } from "../../../lib/staticData";
+import { RootState } from "../../../store";
 import { registerActions } from "../../../store/register";
 import palette from "../../../styles/palette";
 import RadioGroup from "../../common/RadioGroup";
@@ -63,10 +64,12 @@ const applyTypeRadioOptions = [
 
 const RegisterSpecies: React.FC = () => {
   const largeSpeciesType = useSelector(
-    (state) => state.register.largeSpeciesType
+    (state: RootState) => state.register.largeSpeciesType
   );
-  const speciesType = useSelector((state) => state.register.speciesType);
-  const applyType = useSelector((state) => state.register.applyType);
+  const speciesType = useSelector(
+    (state: RootState) => state.register.speciesType
+  );
+  const applyType = useSelector((state: RootState) => state.register.applyType);
 
   const dispatch = useDispatch();
 

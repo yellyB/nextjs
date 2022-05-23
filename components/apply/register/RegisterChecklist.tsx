@@ -3,6 +3,7 @@ import React, { useMemo } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { RootState } from "../../../store";
 import { registerActions } from "../../../store/register";
 import palette from "../../../styles/palette";
 import RegisterCheckStep from "./RegisterCheckStep";
@@ -43,7 +44,7 @@ const RegisterChecklist: React.FC = () => {
   // 다른 페이지들에서는 값을 불러왔지만
   // 이 페이지에서는 리렌더 발생 X 이기 때문에
   // register 객체를 불러옴
-  const register = useSelector((state) => state.register);
+  const register = useSelector((state: RootState) => state.register);
 
   const isSpeciesActived = useMemo(() => {
     const { largeSpeciesType, speciesType, applyType } = register;

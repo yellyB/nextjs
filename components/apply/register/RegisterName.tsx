@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
+import { RootState } from "../../../store";
 import { registerActions } from "../../../store/register";
 import palette from "../../../styles/palette";
 import Input from "../../common/Input";
@@ -33,7 +34,7 @@ const Container = styled.div`
 `;
 
 const RegisterName: React.FC = () => {
-  const name = useSelector((state) => state.register.name);
+  const name = useSelector((state: RootState) => state.register.name);
 
   const dispatch = useDispatch();
 
