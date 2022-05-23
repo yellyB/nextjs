@@ -104,7 +104,7 @@ const SignInModal: React.FC<IProps> = ({ closeModal }) => {
         closeModal();
       } catch (e) {
         console.log(e);
-        alert(e.response.data);
+        // alert(e.response.data);
       }
     }
   };
