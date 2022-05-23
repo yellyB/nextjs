@@ -1,16 +1,16 @@
-## next.js 공부용 프로젝트
+## next.js 프로젝트: 마왕성 구직 플랫폼
 개발 기간: 4.28 ~ 5. 23
 <br/><br/>
 
 
 ## 라이브러리
-jsonwebtoken  
-axios  
-bcryptjs  
-formidable  
-lodash  
-styled-components  
-googlemaps  
+- jsonwebtoken  
+- axios  
+- bcryptjs  
+- formidable  
+- lodash  
+- styled-components  
+- googlemaps  
 <br/><br/><br/>
 
 ## Result
