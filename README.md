@@ -1,5 +1,10 @@
 ## next.js 프로젝트: 마왕성 구직 플랫폼
-개발 기간: 4.28 ~ 5. 23
+:calendar: 개발 기간: 4.28 ~ 5. 23  
+<div>
+  <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo-appveyor&logo=next.js&logoColor=white"/>
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo-appveyor&logo=TypeScript&logoColor=white"/>
+  <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo-appveyor&logo=redux&logoColor=white"/>
+ </div>
 <br/><br/>
 
 
