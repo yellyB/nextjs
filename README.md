@@ -21,7 +21,7 @@
 ## Result
  ![1_header](https://user-images.githubusercontent.com/50893303/169723392-2584c238-2541-45d9-a539-143e10cf98b6.png)
 <br/><br/><br/><br/>
-![2_content](https://user-images.githubusercontent.com/50893303/169723555-c9f0f141-139a-416a-9600-aa36d6fcc59d.png)
+ ![2_content](https://user-images.githubusercontent.com/50893303/170614786-7e2aadc4-4c3a-4371-a784-1edd04774a21.png)
 
 
 <br/><br/><br/><br/>
