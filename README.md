@@ -1,4 +1,4 @@
-## next.js 프로젝트: 마왕성 구직 플랫폼
+## next.js 프로젝트: :european_castle: :deer: 마왕성 구직 플랫폼
 :calendar: 개발 기간: 4.28 ~ 5. 23  
 <div>
   <img src="https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo-appveyor&logo=next.js&logoColor=white"/>
